@@ -1,9 +1,9 @@
 
-const dictionayFile = "c:\\My Documents\\My Projects\\Instranslate\\dictionary.json";
-const googleKeyFile = "c:\\My Documents\\My Projects\\Instranslate\\summer-pattern-337013-9b9ec96d24ea.json";
+const dictionayFile = "../dictionary.json";
+const googleKeyFile = "summer-pattern-337013-9b9ec96d24ea.json";
 
 
-const fs = require("fs");
+// const fs = require("fs");
 const dictionary = require(dictionayFile);
 
 const express = require("express");
@@ -20,38 +20,6 @@ const translate = new Translate({keyFilename: googleKeyFile});
 
 // Creates an advance client:
 const translationClient = new TranslationServiceClient({keyFilename: googleKeyFile});
-
-
-async function translateTextAdvance(words) 
-{
-    const projectId = 'summer-pattern-337013';
-    const location = 'global';
-    const text = 'advantage';
-
-    const request = 
-    {
-        parent: `projects/${projectId}/locations/${location}`,
-        contents: [text],
-        mimeType: 'text/plain', // mime types: text/plain, text/html
-        sourceLanguageCode: 'en',
-        targetLanguageCode: 'he',
-    };
-  
-    try 
-    {
-        const [response] = await translationClient.translateText(request);
-
-        for (const translation of response.translations) 
-        {
-            console.log(`Translation: ${translation.translatedText}`);
-        }
-    } 
-    catch (error) 
-    {
-        console.log(error);        
-    }
-
-}
 
 async function translateTextBasic(words) 
 {
@@ -110,7 +78,6 @@ async function OnPostRequest(req, response)
             googleWords.push(words[i]);
     }
 
-
     //then send to Google the words that were not found
     let promises = [];
     let start = 0, end = 0;    
@@ -118,7 +85,7 @@ async function OnPostRequest(req, response)
     {
         start = end;
         end = (end + 128) < googleWords.length ? end + 128 : googleWords.length;
-        promises.push( (googleWords.slice(start, end)));
+        promises.push(translateTextBasic(googleWords.slice(start, end)));
     }
 
     let values = await Promise.all(promises);
@@ -141,58 +108,25 @@ async function OnPostRequest(req, response)
     }
 
     let data = JSON.stringify(dictionary, null, 2);
-    fs.writeFileSync(dictionayFile, data);
-    //fs.writeFile('dictionary.json', data);
+    // try
+    // {
+    //     fs.writeFileSync(dictionayFile, data);
+    // }
+    // catch(e)
+    // {
+    //     return ({err: e});
+    // }
 
+    wordsJson.googleWords = googleWords.length;
+    
     return wordsJson;
 }
 
-/*
-current file format:
-{
-    'word_1': 'translation_1',
-    'word_2': 'translation_2',
-    'word_3': 'translation_3',
-}
-
-should be changed to?
-{
-    'word_1': 
-    {
-        t: 'translation_1',
-        c: 1
-    },
-    'word_2': 
-    {
-        t: 'translation_2',
-        c: 2
-    },
-}
-or
-{
-    'word_1': ['translation_1', 2],
-    'word_2': ['translation_2', 2],
-    'word_3': ['translation_3', 2],
-}
-*/
-
-function ConvertDictionaryFile()
-{
-    let jsonOut = {};
-    for(let key in dictionary)
-    {
-        jsonOut[key] = [dictionary[key], 1];
-    }
-
-    const fileName = "d:\\My Documents\\My Projects\\Instranslate\\dictionary_2.json";
-    let data = JSON.stringify(jsonOut);
-    fs.writeFileSync(fileName, data);
-
-}
-
-
 router.post("/", function (req, response, next) 
 {
+    // response.append("Access-Control-Allow-Origin", "*");
+    // response.send(req.body);
+    // return;
     //ConvertDictionaryFile();
     //return;
 
@@ -216,7 +150,7 @@ router.post("/", function (req, response, next)
 router.get("/", function (req, response, next) 
 {
     response.append("Access-Control-Allow-Origin", "*");
-    response.send("just a test");
+    response.send({a:1, b:2});
 });
 
 module.exports = router;
