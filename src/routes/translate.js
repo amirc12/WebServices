@@ -1,10 +1,6 @@
 
-const dictionayFile = "../dictionary.json";
-const googleKeyFile = "summer-pattern-337013-9b9ec96d24ea.json";
-
-
 // const fs = require("fs");
-const dictionary = require(dictionayFile);
+const dictionary = require(process.env.DICTIONARY);
 
 const express = require("express");
 const router = express.Router();
@@ -16,10 +12,10 @@ const {Translate} = require('@google-cloud/translate').v2;
 const {TranslationServiceClient} = require('@google-cloud/translate');
 
 // Creates a basic client:
-const translate = new Translate({keyFilename: googleKeyFile});
+const translate = new Translate({keyFilename: process.env.GOOGLE_KEY});
 
 // Creates an advance client:
-const translationClient = new TranslationServiceClient({keyFilename: googleKeyFile});
+const translationClient = new TranslationServiceClient({keyFilename: process.env.GOOGLE_KEY});
 
 async function translateTextBasic(words) 
 {

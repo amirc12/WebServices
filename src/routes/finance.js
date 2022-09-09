@@ -2,17 +2,16 @@ const fetch = require("node-fetch");
 const express = require("express");
 const router = express.Router();
 
-const API_URL = "https://yh-finance.p.rapidapi.com/stock/v2";
+const API_URL = process.env.FINANCE_API_URL;
 
 const OPTIONS =
 {
     method:  "GET",
-    headers: 
-    {
-        "X-RapidAPI-Key"  : "4f1e4a5020msh3f7051a5abbf94bp1fb4e4jsne79536f67c10",
-        "X-RapidAPI-Host" : "yh-finance.p.rapidapi.com",
-    }
+    headers: {}
 };
+
+OPTIONS.headers[process.env.API_KEY_KEY] = process.env.API_KEY_VAL;
+OPTIONS.headers[process.env.API_HOST_KEY] = process.env.API_HOST_VAL;
 
 router.post("/", function (req, response, next) 
 {
