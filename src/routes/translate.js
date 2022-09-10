@@ -1,5 +1,5 @@
 
-// const fs = require("fs");
+const fs = require("fs");
 const dictionary = require(process.env.DICTIONARY);
 
 const express = require("express");
@@ -104,14 +104,15 @@ async function OnPostRequest(req, response)
     }
 
     let data = JSON.stringify(dictionary, null, 2);
-    // try
-    // {
-    //     fs.writeFileSync(dictionayFile, data);
-    // }
-    // catch(e)
-    // {
-    //     return ({err: e});
-    // }
+    try
+    {
+        fs.writeFileSync(process.env.DICTIONARY, data);
+    }
+    catch(e)
+    {
+        console.error(e);
+        debugger;
+    }
 
     wordsJson.googleWords = googleWords.length;
     
