@@ -1,6 +1,11 @@
 
 const fs = require("fs");
-const dictionary = require(process.env.DICTIONARY);
+
+const googleKeyPath = require('path').format({ dir: process.cwd(), base: process.env.GOOGLE_KEY });
+const dictionaryPath = require('path').format({ dir: process.cwd(), base: process.env.DICTIONARY });
+
+const dictionary = require(dictionaryPath);
+// const dictionary = require(process.env.DICTIONARY);
 
 const express = require("express");
 const router = express.Router();
@@ -12,10 +17,10 @@ const {Translate} = require('@google-cloud/translate').v2;
 const {TranslationServiceClient} = require('@google-cloud/translate');
 
 // Creates a basic client:
-const translate = new Translate({keyFilename: process.env.GOOGLE_KEY});
+const translate = new Translate({keyFilename: googleKeyPath});
 
 // Creates an advance client:
-const translationClient = new TranslationServiceClient({keyFilename: process.env.GOOGLE_KEY});
+const translationClient = new TranslationServiceClient({keyFilename: googleKeyPath});
 
 async function translateTextBasic(words) 
 {
@@ -64,14 +69,15 @@ async function OnPostRequest(req, response)
     words = words.filter(word => (word != 'the' && word != 'are' && word != 'and'));
 
     let googleWords = [];
-    let wordsJson = {};
+    let translatedWords = {};
 
     //first search the words in our dictionary.json file
-    for(let i = 0; i < words.length; i++)
+    for(const word of words)
     {
-        wordsJson[words[i]] = dictionary[words[i]];
-        if(wordsJson[words[i]] === undefined)
-            googleWords.push(words[i]);
+        if(dictionary.hasOwnProperty(word))
+            translatedWords[word] = dictionary[word];
+        else
+            googleWords.push(word);
     }
 
     //then send to Google the words that were not found
@@ -86,27 +92,31 @@ async function OnPostRequest(req, response)
 
     let values = await Promise.all(promises);
 
-    let json = {};
+    let googleTranslated = {};
     for(let value of values)
     {
-        Object.assign(json, value);
+        Object.assign(googleTranslated, value);
     }
     
-    for(let i = 0; i < googleWords.length; i++)
+    for(const word of googleWords)
     {
-        wordsJson[googleWords[i]] = json[googleWords[i]];
+        translatedWords[word] = googleTranslated[word];
+
+        //also update dictionary with new words translated by Google
+        dictionary[word] = googleTranslated[word];
     }
 
-    //update dictionary to be saved with new words
-    for(let i = 0; i < words.length; i++)
-    {
-        dictionary[words[i]] = wordsJson[words[i]];
-    }
-
+    //append new words translated by Google to dictionary file
     let data = JSON.stringify(dictionary, null, 2);
     try
     {
-        fs.writeFileSync(process.env.DICTIONARY, data);
+        //fs.writeFileSync(process.env.DICTIONARY, data);
+        //fs.appendFile(process.env.DICTIONARY, data);
+        fs.writeFile(dictionaryPath, data, function (err) 
+        {
+            if (err) throw err;
+            console.log('Dictionary saved');
+        });
     }
     catch(e)
     {
@@ -114,9 +124,9 @@ async function OnPostRequest(req, response)
         debugger;
     }
 
-    wordsJson.googleWords = googleWords.length;
+    translatedWords.googleWords = googleWords.length;
     
-    return wordsJson;
+    return translatedWords;
 }
 
 router.post("/", function (req, response, next) 
