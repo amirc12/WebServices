@@ -8,6 +8,9 @@
         "devstart": "nodemon src/app.js",
         "serverstart": "DEBUG=express:* npm run devstart"
     },
+    "nodemonConfig": {
+        "ignore": ["contact_data.json", "dictionary.json"]
+    },    
     "author": "",
     "license": "ISC",
     "dependencies": {

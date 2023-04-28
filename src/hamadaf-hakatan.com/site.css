@@ -1,0 +1,340 @@
+* 
+{
+	box-sizing: border-box;
+    padding: 0px;
+}
+
+
+body 
+{
+  font-family      : Verdana, Arial, sans-serif;
+  font-size        : 18px;
+  /* letter-spacing   : 1px; */
+  line-height      : 1.5;
+  color            : #5A5A64;
+  margin           : 0px;
+  background-color : #F4F4F4;
+  /* padding          : 10px; */
+  direction        : rtl;
+  background-image : url('header.png');
+  background-size: cover;
+}
+
+header 
+{
+    display          : flex;
+    align-items      : center;
+    margin           : auto;
+    width            : 90%;
+    max-width        : 1000px;
+}
+
+.logo 
+{
+    flex             : 2;
+    align-items      : center;
+    color            : rgb(57, 52, 52);
+    font-size        : 50px;
+    padding          : 10px 30px;
+}
+
+.logo_subtitle
+{
+    font-size   : 16px;
+    margin-left : 20px;
+    margin-top  : 5px;
+    color       : #eec75e;
+}
+
+.topnav 
+{
+    flex             : 1;
+    display          : flex;
+    justify-content  : center;
+    overflow         : hidden;
+    padding          : 20px;
+}
+
+.topnav a 
+{
+  color: #434240;
+  text-align: center;
+  padding: 6px 26px;
+  text-decoration: none;
+}
+
+.topnav a:hover 
+{
+  color: rgb(194, 68, 46);
+}
+
+.topnav a.active 
+{
+  color:rgb(194, 68, 46);
+  border-bottom: 2px solid rgb(194, 68, 46);
+}
+
+.page_container 
+{
+    margin : auto;
+    width  : 60%;
+}
+
+.content 
+{
+    margin           : 2em auto;
+    width            : 100%;
+    min-height: 500px;
+    /* max-width        : 1000px;
+    background-color : white;
+    padding          : 25px;
+    box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02); */
+}
+
+.title
+{
+    color          : rgb(194, 68, 46);
+    font-size      : 36px;
+    /* padding-top    : 15px; */
+}
+
+.description 
+{
+    display        : flex;
+    /* flex-direction : row-reverse; */
+    gap            : 30px;
+}
+
+.install
+{
+    padding          : 30px;
+    background-color : white;
+    display          : flex;
+    gap              : 20px;
+}
+
+.install_title
+{
+    padding          : 10px;
+    background-color : #e4dede;
+    border-bottom    : 1px solid lightgray;
+    font-size        : 22px;
+    color            : #404040;
+}
+
+.install_item
+{
+    display     : flex;
+    align-items : center;
+    gap         : 5px;
+    padding     : 5px;
+    padding-top : 20px;
+}
+
+li
+{
+    margin-top: 10px;
+}
+
+a
+{
+  color: #294c7d; 
+}
+
+.left_col_item
+{
+    /* padding          : 10px;
+    border-radius    : 8px;
+    border           : 1px solid lightgray;
+    background-color : #f3f5f1; */
+}
+
+.features
+{
+    margin-top       : 35px;
+    margin-left      : 5px;
+    /* margin-left      : -26px; */
+    margin-bottom    : 30px;
+    color            : #404040;
+    padding          : 10px;
+    border-radius    : 8px;
+    /* border-radius:0px 10px 10px 0px; */
+    border           : 1px solid lightgray;
+    background-color : #f3f5f1;
+}
+
+.features_title
+{
+    /* background-color: beige; */
+    font-size: 18px;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.feature
+{
+    margin: 10px;
+    background-color: #e2ecd9;
+    font-size: 16px;
+    padding: 10px 15px 10px 15px;
+    border-radius: 8px;
+    /* border: 1px solid lightgray; */
+}
+
+.feature_title
+{
+    /* background-color: beige; */
+    /* color: rgb(4, 69, 4); */
+    font-size: 18px;
+    padding-bottom: 5px;
+    text-decoration-line: underline;
+}
+
+footer 
+{
+    margin           : auto;
+    width            : 90%;
+    max-width        : 1000px;
+    margin-top       : 10px;
+    padding          : 10px;
+    font-size        : 14px;
+    color            : #404040;
+}
+
+button 
+{
+    background-color : #85b731;
+    border           : none;
+    border-radius    : 5px;
+    color            : white;
+    padding          : 15px 15px;
+    text-align       : center;
+    text-decoration  : none;
+    display          : inline-block;
+    font-family      : Verdana, Arial, sans-serif;
+    font-size        : 16px;
+    margin           : 4px 2px;
+    cursor           : pointer;
+    width            : 170px;
+}
+
+button:hover 
+{
+    background-color: #5f8323;
+}
+
+input[type=text], select, textarea 
+{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 1px;
+    margin-bottom: 12px;
+    resize: vertical;
+    font-size: 16px;
+}
+
+input[type=submit] 
+{
+    margin: auto;
+    width: 50%;
+    background-color: rgb(194, 68, 46);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+input[type=submit]:hover 
+{
+    background-color: rgb(152, 54, 37);
+}
+
+.contact_form 
+{
+    border-radius: 5px;
+    /* margin: 20px; */
+    /* padding: 10px; */
+}
+
+@media only screen and (max-width: 600px) 
+{
+    .page_container 
+    {
+        margin : auto;
+        width  : 90%;
+    }
+    
+    .content 
+    {
+        margin           : 1em auto;
+        width            : 95%;
+        max-width        : 1000px;
+        padding          : 5px;
+        box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+    }
+        
+    .title
+    {
+        color          : rgb(194, 68, 46);
+        font-size      : 20px;
+        padding-bottom : 5px;
+    }
+    
+    .description 
+    {
+        flex-direction : column-reverse;
+    }
+  
+    .features
+    {
+        margin-top       : 35px;
+        margin-bottom    : 30px;
+        padding          : 5px;
+    }
+        
+    .install
+    {
+        flex-direction: column;
+        padding          : 10px;
+        gap              : 10px;
+    }
+    
+    .install_item
+    {
+        flex-direction: column;
+    }
+
+	header 
+	{
+        flex-direction : column;
+        font-size      : 30px;
+	}
+
+    .logo
+    {
+        font-size : 30px;
+        padding   : 5px 10px;
+    }
+	
+    .logo_subtitle
+    {
+        display: none;
+    }
+    
+    .topnav 
+	{
+	  padding: 5px;
+	  padding-left: 0px;
+	}
+	
+	.topnav a 
+	{
+        font-size : 18px;;
+        float     : left;
+	}
+}

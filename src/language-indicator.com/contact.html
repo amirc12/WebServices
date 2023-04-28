@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Indicator</title>
+    <link href="site.css" rel="stylesheet">
+    <script src="site.js" defer></script>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8RJQGM7PLY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8RJQGM7PLY');
+</script>
+
+<body>
+
+    <div style="background-color : #404040;">
+        <header>
+            <div class="logo">
+                <div>Language Indicator</div>
+                <div class="logo_subtitle">Minimize your type errors</div>
+            </div>
+            <div class="topnav">
+                <a href="index.html">Home</a>
+                <a class="active" href="contact.html">Contact</a>
+                <a href="about.html">About</a>
+            </div>
+        </header>
+    </div>
+
+    <div class="content">
+
+        <div style="padding-top:20px; padding-left: 20px;">
+            <b><u>Send Your Comment</u></b><br><br>
+            Please let me know if you have any comments, questions, suggestions or if you found any bugs in the software.<br><br>
+            Thank You (-:
+        </div>
+
+        <div class="contact_form">
+            <form id="contact_form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name..">
+
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" placeholder="Your country..">
+
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Subject..">
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Write something.." style="height:200px"></textarea>
+
+                <!-- <input type="submit" value="Send Message"> -->
+            </form>
+            <button id="send_msg_button" class="action_button" onclick="OnSendMessageButtonClick()">Send Message</button>
+        </div>
+    </div>
+
+    <div style="background-color : #404040;">
+        <footer>
+            Copyright (c) 2021 - Language Indicator - All Rights Reserved
+        </footer>
+    </div>
+
+</body>
+</html>

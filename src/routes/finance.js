@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const express = require("express");
 const router = express.Router();
-
+	
 const API_URL = process.env.FINANCE_API_URL;
 
 const OPTIONS =
@@ -21,6 +21,7 @@ router.get("/stock-info", function (req, response, next)
 {
     const symbol = req.query.q;
 
+    //get financial info of the stock
     let url   = `${API_URL}/get-financials?symbol=${symbol}&region=US`;
 
     fetch (url, OPTIONS)
@@ -44,6 +45,8 @@ router.get("/options", function (req, response, next)
     const symbol = req.query.q;
     const date = req.query.date ? req.query.date : '';
 
+    /*get options info: 
+    if date is not specified, return the contarcts by date*/
     let url   = `${API_URL}/get-options?symbol=${symbol}&region=US&date=${date}`;
 
     fetch (url, OPTIONS)
@@ -60,6 +63,7 @@ router.get("/options", function (req, response, next)
         console.error(e);
         debugger;
     }); 
+    //end of function
 });
 
 module.exports = router;

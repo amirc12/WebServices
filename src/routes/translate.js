@@ -27,8 +27,7 @@ async function translateTextBasic(words)
     const target = 'he';
 
     // Translates the text into the target language. "text" can be a string for
-    // translating a single piece of text, or an array of strings for translating
-    // multiple texts.
+    // translating a single piece of text, or an array of strings for translating multiple texts.
     const options = 
     {
         to: target,
@@ -36,7 +35,6 @@ async function translateTextBasic(words)
     };
 
     let [translations] = await translate.translate(words, options);
-    //let response = await translate.translate(words, options);
 
     translations = Array.isArray(translations) ? translations : [translations];
     console.log('Translations:');
@@ -71,7 +69,7 @@ async function OnPostRequest(req, response)
     let googleWords = [];
     let translatedWords = {};
 
-    //first search the words in our dictionary.json file
+    //first search the words in our dictionary file
     for(const word of words)
     {
         if(dictionary.hasOwnProperty(word))
@@ -112,7 +110,7 @@ async function OnPostRequest(req, response)
     {
         //fs.writeFileSync(process.env.DICTIONARY, data);
         //fs.appendFile(process.env.DICTIONARY, data);
-        fs.writeFile(dictionaryPath, data, function (err) 
+        fs.writeFile(dictionaryPath, 'data', function (err) 
         {
             if (err) throw err;
             console.log('Dictionary saved');
@@ -131,15 +129,6 @@ async function OnPostRequest(req, response)
 
 router.post("/", function (req, response, next) 
 {
-    // response.append("Access-Control-Allow-Origin", "*");
-    // response.send(req.body);
-    // return;
-    //ConvertDictionaryFile();
-    //return;
-
-    //translateTextAdvance('aaa')
-    //return;
-
     OnPostRequest(req, response)
     .then((json) => 
     {
@@ -153,9 +142,43 @@ router.post("/", function (req, response, next)
     }); 
 });
 
+function parseFile()
+{
+    const fileName = require('path').format({ dir: __dirname, base: "finance.js" });
+
+    const file = fs.readFileSync(fileName, 'utf8');
+    let charCount = file.length;
+
+    //get characters withou spaces, tabs etc.
+    const removeSpecialsRegEx = /[ \n\r\t]/g;
+    const chars = file.replace(removeSpecialsRegEx, '');
+    charCount = chars.length;
+
+    //search for comments
+    const commentsRegEx = /\/\/[^\n]+|\/\*[^\*\/]+/g;
+    let comments = file.match(commentsRegEx);
+    comments = Array.from(comments, comment => comment.replace(removeSpecialsRegEx, ''));
+
+    //calculate comments num of chars 
+    const commentLength = comments.reduce((count, comment) => 
+    {
+        return count + comment.length;
+    }, 0);
+
+    //split file content to lines
+    let lines = file.split("\r\n");
+
+    //remove empty lines
+    lines = lines.filter(line => line.length > 0);
+
+    const linesCount = lines.length;
+}
+
 /* GET users listing. */
 router.get("/", function (req, response, next) 
 {
+    parseFile();
+
     response.append("Access-Control-Allow-Origin", "*");
     response.send({a:1, b:2});
 });
