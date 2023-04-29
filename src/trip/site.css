@@ -1,0 +1,136 @@
+* 
+{
+	box-sizing: border-box;
+    padding: 0px;
+}
+
+body 
+{
+  font-family      : Verdana, Arial, sans-serif;
+  font-size        : 16px;
+  /* letter-spacing   : 1px; */
+  line-height      : 1.5;
+  color            : #5A5A64;
+  background-color : #F4F4F4;
+  padding          : 0px;
+  margin           : 1em auto;
+  width            : 90%;
+  max-width        : 1000px;
+}
+
+header 
+{
+    background-color : #f765a3;
+    color: #0b1354;
+    font-size: xx-large;
+    padding: 15px;
+}
+
+button 
+{
+    background-color : #165ba9;
+    border           : none;
+    border-radius    : 5px;
+    color            : white;
+    padding          : 5px;
+    text-align       : center;
+    text-decoration  : none;
+    display          : inline-block;
+    font-family      : Verdana, Arial, sans-serif;
+    font-size        : 14px;
+    margin           : 4px 2px;
+    cursor           : pointer;
+}
+
+.card 
+{
+    border: 1px solid lightgray;
+    margin-top: 15px;
+    background-color : white;
+    box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+}
+
+.title
+{
+    border-bottom: 1px solid lightgray;
+    background-color:#ffdbd6;
+    color: #0b1354;
+    font-size: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+h1
+{
+    margin: 5px 0px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.content
+{
+    display: none;
+    padding: 10px;
+}
+
+.p
+{
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+img
+{
+    float: left;
+    width: 32px;
+    height: 32px;
+}
+
+.waze_img
+{
+    width: 110px;
+    height: 30px;
+    border: 1px solid rgba(0, 81, 255, 0.657);
+    border-radius: 5px;
+    background-color: #77cfe8;
+}
+
+.google_img
+{
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    /* border: 1px solid rgba(0, 81, 255, 0.657); */
+    border-radius: 5px;
+    /* background-color: #77cfe8; */
+}
+
+.address
+{
+    display: flex;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px) 
+{
+    body 
+    {
+        width            : 100%;
+        margin           : 0 auto;
+    }
+
+    header 
+    {
+        font-size: 28px;
+        padding: 5px;
+    }
+    
+    .card 
+    {
+        margin     : 1em auto;
+        width      : 95%;
+        max-width  : 1000px;
+        box-shadow : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+    }
+}

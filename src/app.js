@@ -135,9 +135,9 @@ app.get("/LangIndicator.zip", (req, res) =>
     return res.sendFile(filePath);
 });
 
-app.get("/setup.exe", (req, res) => 
+app.get("/LangIndicatorInstall.exe", (req, res) => 
 {
-    let filePath = path.join(__dirname + "/" + req.hostname.replace('www.', '') + "/setup.exe");
+    let filePath = path.join(__dirname + "/" + req.hostname.replace('www.', '') + "/LangIndicatorInstall.exe");
     return res.sendFile(filePath);
 });
 
@@ -218,5 +218,30 @@ app.get("/cover.png", (req, res) =>
 app.get("/header.png", (req, res) => 
 {
     let filePath = path.join(__dirname + "/" + req.hostname.replace('www.', '') + "/header.png");
+    return res.sendFile(filePath);
+});
+
+//Images for Holand trip
+app.get("/google_maps.png", (req, res) => 
+{
+    let filePath = path.join(__dirname + "/" + req.hostname.replace('www.', '') + "/google_maps.png");
+    return res.sendFile(filePath);
+});
+
+app.get("/expand_more.png", (req, res) => 
+{
+    let filePath = path.join(__dirname + "/" + req.hostname.replace('www.', '') + "/expand_more.png");
+    return res.sendFile(filePath);
+});
+
+app.get("/expand_less.png", (req, res) => 
+{
+    let filePath = path.join(__dirname + "/" + req.hostname.replace('www.', '') + "/expand_less.png");
+    return res.sendFile(filePath);
+});
+
+app.get("/waze.png", (req, res) => 
+{
+    let filePath = path.join(__dirname + "/" + req.hostname.replace('www.', '') + "/waze.png");
     return res.sendFile(filePath);
 });

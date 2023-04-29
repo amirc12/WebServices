@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Indicator</title>
+    <link href="site.css" rel="stylesheet">
+    <script src="site.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        הולנד 2022 בת מצוה לנעה&nbsp;&nbsp;&nbsp;
+        <button onclick="OnClickExpand()">Expand All</button>
+        <button onclick="OnClickCollapse()">Collapse All</button>
+        <button id="weather_button" onclick="OnClickWeather()">Show Weather</button>
+    </header>
+
+    <div id="weatherwidget" style="display: none;">
+        <a class="weatherwidget-io" href="https://forecast7.com/he/52d374d90/amsterdam/" data-label_1="אמסטרדם" data-label_2="מזג אויר" data-theme="original" >אמסטרדם מזג אויר</a>
+    </div>
+
+    <div class="card">
+        <div class="title">1 - יום שלישי 9.8.2022</div>
+        <div class="content">
+            <div class="p">
+                טיסת אל על לאמסטרדם מספר LY 339 המראה בשעה 15:50 נחיתה בשעה 19:55<br>
+                איסוף מכוניות מחברת Sixt <br>
+            </div>
+            <div class="p">
+                נסיעה לכפר הנופש Park Berkenrhode (2 דירות) נסיעה כשעה ורבע.<br>
+                <div class="address" dest="Roekelseweg 44-48 6733 BP Wekerom Netherlands">(כ-5 דקות נסיעה)</div>
+            </div>
+            <div class="p">
+                הכשרה מהירה של המטבח - 
+                (<a href="https://www.jewishtraveler.co.il/make-it-kosher/">קישור לאתר</a>)<br>
+            </div>
+            <div class="p">
+                <h1>סופרמרקטים קרובים:</h1>
+                <div class="address" dest="Edeseweg 118, 6733 AH Wekerom, Netherlands"></div>
+                (כ-5 דקות נסיעה)<br>
+                <div class="address" dest="Dorpsstraat 4a, 6731 AT Otterlo, Netherlands"></div>
+                (כ-7 דקות נסיעה)
+            </div>
+            <div class="p">
+                <h1>יכול להיות שיש ארוחות כשרות במלון הזה:</h1>
+                Fletcher Hotel De Wipselberg<br>
+                <div class="address" dest="Wipselbergweg 30 7361 TK Beekbergen"></div>
+                טלפון: Tel: +31 (0)55 - 506 26 26
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">2 - יום רביעי 10.8.2022</div>
+        <div class="content">
+            <div class="p">
+                <b>דולפינריום</b>
+                (<a href="https://www.dolfinarium.nl/en">קישור לאתר</a>)<br>
+                (שעות פתיחה 10:00 – 17:00)
+                <div class="address" dest="Zuiderzeeboulevard 22 3841 WB Harderwijk, Netherlands">(כ-50 דקות נסיעה)</div>
+            </div>
+            <div class="p">
+                <b>ארוחת צהריים במסעדת עמי ותמי </b>
+                (<a href="https://english.hansengrietjezeewolde.nl">קישור לאתר</a>)<br>
+                (צריך להזמין מקום!!)
+                <div class="address" dest="Sternweg 2A, 3898 LJ Zeewolde"></div>
+            </div>
+            <div class="p">
+                <b>אאוטלט Batavia Stad </b>
+                (<a href="https://bataviastad.nl/en/">קישור לאתר</a>)<br>
+                (פתוח עד 20:00)
+                <div class="address" dest="Bataviaplein 60, 8242 PN Lelystad"></div>
+            </div>
+            <div class="p">
+                ממש מאחורי האאוטלט יש את האוניה Batavia (פתוח עד 17:00)
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">3 - יום חמישי 11.8.2022</div>
+        <div class="content">
+            <div class="p">
+                <b>פארק אפטלינג </b>
+                (<a href="https://www.efteling.com/en">קישור לאתר</a>)<br>
+                (שעות פתיחה 10:00 – 22:00)<br>
+                <b>יציאה 8:30</b>
+                <div class="address" dest="Europalaan 1 5171 KW Kaatsheuvel Netherlands">(כשעה ורבע נסיעה)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">4 - יום שישי 12.8.2022</div>
+        <div class="content">
+            <div class="p">
+                <b>גן חיות Burgers’ Zoo  </b>
+                (<a href="https://www.burgerszoo.nl">קישור לאתר</a>)<br>
+                (שעות פתיחה 9:00 – 20:00)
+                <div class="address" dest="Antoon van Hooffplein 1, 6816 SH Arnhem, Netherlands">(כ-30 דקות נסיעה)</div>
+            </div>
+            <div class="p">
+                <b>מרכז קניות Primark</b>
+                (<a href="https://www.primark.com/en-us">קישור לאתר</a>)<br>
+                <div class="address" dest="45 Ketelstraat 6811 CZ Arnhem"></div>
+            </div>
+            <div class="p">
+                <b>פארק הוחה פלואה - Hoge Veluwe National Park</b>
+                (<a href="https://www.hogeveluwe.nl)">קישור לאתר</a>)<br>
+                (שעות פתיחה 8:00 – 21:00)<br>
+                להביא אוכל ושתיה לפיקניק בפארק
+                <div class="address" dest="Houtkampweg 13, Hoenderloo"></div>
+            </div>
+            <div class="p">
+                כניסת שבת – 20:52.<br>
+                יציאת שבת – 22:06.<br>            
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">5 - יום שבת 13.8.2022</div>
+        <div class="content">
+            <div class="p">
+                טיול אופניים בקרבת כפר הנופש 
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">6 - יום ראשון 14.8.2022</div>
+        <div class="content">
+            <div class="p">
+                <b>כדאי לעשות צ'ק אין למלון אונליין </b><br>
+                2 אפשרויות לחלק הראשון של היום:<br>
+            </div>
+            <div class="p">
+                <b>1.	פארק הקופים Apenheul </b>
+                (<a href="https://apenheul.com">קישור לאתר</a>)<br>
+                (שעות פתיחה 9:30 – 18:00)  
+                <div class="address" dest="J.C. Wilslaan 31 7313 HK Apeldoorn Netherlands"></div>
+            </div>
+            <div class="p">
+                <b>2.	ביקור בארמון הט לו Paleis Het Loo  </b>
+                (<a href="https://paleishetloo.nl/en">קישור לאתר</a>)<br>
+                <div class="address" dest="Amersfoortseweg, 7313 AA, Apeldoorn"></div>
+            </div>
+            <div class="p">
+                <b>נסיעה לכפר חיטהורן (להגיע עד השעה 16:00) </b>
+                <div class="address" dest="Eendrachtsplein 4, 8355 DL Giethoorn">(כתובת לחניה</div>
+            </div>
+            <div class="p">
+                <b>חוות סחלבים ופרפרים </b>
+                (<a href="https://www.orchideeenhoeve.com/">קישור לאתר</a>)<br>
+                (שעות פתיחה 10:00 – 18:00) 
+                <div class="address" dest="Oosterringweg 34, 8315 PV Luttelgeest"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">7 - יום שני 15.8.2022</div>
+        <div class="content">
+            <div class="p">
+                צ'ק אאוט מכפר הנופש עד שעה 11:00
+                נסיעה לכיוון אמסטרדם.
+                אפשר לעבור בעיר Utrecht לביקור קצר. 
+                אפשר ביקור קצר במוזיאון הרכבות ומשם ללכת ברגל למרכז העיר.
+                (<a href="https://www.spoorwegmuseum.nl/en/">קישור לאתר</a>)<br>
+                <div class="address" dest="Maliebaanstation 16 3581 XW Utrecht"></div>
+            </div>
+            <div class="p">
+                משם לצעוד לכיוון המדרחוב של העיר כרבע שעה הליכה 
+                <div class="address" dest="Steenweg"></div>
+            </div>
+            <div class="p">
+                משם להמשיך לטירת דה האר (רק להעיף מבט מבחוץ אולי לעשות פיקניק) 
+                (<a href="https://www.kasteeldehaar.nl/english/?lang=en">קישור לאתר</a>)<br>
+                <div class="address" dest="Kasteellaan 1, 3455 RR Haarzuilens"></div>
+            </div>
+            <div class="p">
+                נוסעים למלון, מורידים מזוודות לצ'ק אין ונוסעים להחזיר את המכוניות (מרחק הליכה מהמלון)
+                צ'ק אין במלון Novotel Amsterdam City משעה 15:00 (3 חדרים) 
+                <div class="address" dest="Europaboulevard 10, 1083 AD AMSTERDAM NETHERLANDS"></div>
+            </div>
+            <div class="p">
+                החזרת הרכב בסניף של חברת Sixt (AMSTERDAM DOWNTOWN OFFICE) 
+                <div class="address" dest="EUROPABOULEVARD 2 - AMSTERDAM, NETHERLANDS"></div>
+            </div>
+            <div class="p">
+                ארוחת ערב – Pizza & Co 
+                (<a href="https://www.pizzacoamsterdam.com/">קישור לאתר</a>)<br>
+                <div class="address" dest="Kastelenstraat 105A, 1082 EB Amsterdam, Netherlands"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">8 - יום שלישי 16.8.2022</div>
+        <div class="content">
+            <div class="p">
+                מרכז אמסטרדם<br>
+                בית אנה פרנק<br>
+                מאדם טוסו<br>
+                שייט בתעלות<br>
+                כרטיסים לשייט -  
+                (<a href="https://www.tiqets.com/en/amsterdam-attractions-c75061/tickets-for-canal-cruise-amsterdam-p973666/?partner=metaylimbkipa">קישור לאתר</a>)<br><br>
+                ארוחת צהריים:<br><br>
+                Meat Me Kosher  - 
+                <div class="address" dest="Kastelenstraat 65, 1083 CC Amsterdam"></div>
+                פלאפל מעוז (צמחוני) - 
+                <div class="address" dest="Damrak 40, 1012 LK Amsterdam"></div>
+                מאפים ומוצרי מכולת:
+                Rimon (8:30 – 18:00) - 
+                <div class="address" dest="Kastelenstraat 69, 1083 CC Amsterdam"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="title">9 - יום רביעי 17.8.2022</div>
+        <div class="content">
+            <div class="p">
+                צ'ק אאוט מהמלון עד שעה 11:00<br>
+                ארוחת צהריים בקרבת המלון (אפשר שוב פיצה ב-Pizza & Co)<br>
+                טיסת אל על לתל אביב מספר LY 338 המראה בשעה 16:00 נחיתה בשעה 21:20 <br>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
