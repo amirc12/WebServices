@@ -116,6 +116,12 @@ app.get("/eula.html", (req, res) =>
     return res.sendFile(filePath);
 });
 
+app.get("/portfolio.html", (req, res) => 
+{
+    let filePath = path.join(__dirname + "/" + req.hostname.replace('www.', '') + "/portfolio.html");
+    return res.sendFile(filePath);
+});
+
 app.get("/site.css", (req, res) => 
 {
     let filePath = path.join(__dirname + "/" + req.hostname.replace('www.', '') + "/site.css");

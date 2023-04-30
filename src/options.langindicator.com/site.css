@@ -15,15 +15,62 @@ body
   padding          : 0px;
   margin           : 0px auto;
   width            : 90%;
-  max-width        : 1200px;
+  /* max-width        : 1400px; */
 }
 
 header 
 {
+    display          : flex;
+    align-items      : center;
     background-color : rgb(37, 98, 183);
-    color: white;
-    font-size: xx-large;
-    padding: 15px;
+    color            : white;
+    padding          : 15px;
+}
+
+.logo 
+{
+    flex             : 2;
+    align-items      : center;
+    color            : white;
+    font-size        : 38px;
+    padding          : 10px 30px;
+}
+
+.logo_subtitle
+{
+    font-size   : 16px;
+    margin-left : 20px;
+    margin-top  : 5px;
+    color       : #eec75e;
+}
+
+.topnav 
+{
+    flex            : 1;
+    display         : flex;
+    justify-content : center;
+    overflow        : hidden;
+    padding         : 10px;
+    font-size       : 18px;
+}
+
+.topnav a 
+{
+  color: White;
+  text-align: center;
+  padding: 6px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover 
+{
+  color: #eec75e;
+}
+
+.topnav a.active 
+{
+  color: #eec75e;
+  border-bottom: 2px solid #eec75e;
 }
 
 button 
@@ -99,6 +146,16 @@ button:hover
     padding: 5px; */
 }
 
+.portfolio_container
+{
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px; */
+    margin-top: 20px;
+    /* max-width: 100%;
+    padding: 5px; */
+}
+
 h1
 {
     margin: 5px 0px;
@@ -117,32 +174,6 @@ h1
 {
     padding: 10px;
     border-bottom: 1px solid lightgray;
-}
-
-img
-{
-    float: left;
-    width: 32px;
-    height: 32px;
-}
-
-.waze_img
-{
-    width: 110px;
-    height: 30px;
-    border: 1px solid rgba(0, 81, 255, 0.657);
-    border-radius: 5px;
-    background-color: #77cfe8;
-}
-
-.google_img
-{
-    margin-right: 10px;
-    width: 30px;
-    height: 30px;
-    /* border: 1px solid rgba(0, 81, 255, 0.657); */
-    border-radius: 5px;
-    /* background-color: #77cfe8; */
 }
 
 .address
@@ -169,6 +200,18 @@ th
     padding-left: 3px;
     padding-right: 3px;
     background-color: lightgray;
+    color: black;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.th_c
+{
+    border-collapse: collapse;
+    border:1px solid gray;
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color: rgb(138, 214, 25);
     color: black;
     font-size: 15px;
     font-weight: normal;

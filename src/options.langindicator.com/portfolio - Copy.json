@@ -1,0 +1,134 @@
+[
+    {
+        "date"           : "2022/9/19",
+        "symbol"         : "CAT",
+        "price"          : 182.73,
+        "shares"         : 100,
+        "strike"         : 190,
+        "premium"        : 18.2,
+        "dividend"       : 2.4,
+        "exp_date"       : "2023/6/16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022/9/19",
+        "symbol"         : "XOM",
+        "price"          : 93.38,
+        "shares"         : 100,
+        "strike"         : 97.5,
+        "premium"        : 9.3,
+        "dividend"       : 1.76,
+        "exp_date"       : "2023/6/16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022/9/20",
+        "symbol"         : "MRK",
+        "price"          : 86.02,
+        "shares"         : 100,
+        "strike"         : 90,
+        "premium"        : 5.65,
+        "dividend"       : 1.38,
+        "exp_date"       : "2023/6/16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022/9/20",
+        "symbol"         : "KO",
+        "price"          : 59.53,
+        "shares"         : 100,
+        "strike"         : 62.5,
+        "premium"        : 3.35,
+        "dividend"       : 0.88,
+        "exp_date"       : "2023/6/16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022/10/19",
+        "symbol"         : "CSCO",
+        "price"          : 41.78,
+        "shares"         : 200,
+        "strike"         : 45,
+        "premium"        : 2.94,
+        "dividend"       : 0.76,
+        "exp_date"       : "2023/6/16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022/10/26",
+        "symbol"         : "MSFT",
+        "price"          : 231.78,
+        "shares"         : 100,
+        "strike"         : 250,
+        "premium"        : 18.3,
+        "dividend"       : 1.36,
+        "exp_date"       : "2023/6/16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022/11/10",
+        "symbol"         : "AAPL",
+        "price"          : 142.68,
+        "shares"         : 100,
+        "strike"         : 150,
+        "premium"        : 13.35,
+        "dividend"       : 0.46,
+        "exp_date"       : "2023/6/16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022/11/29",
+        "symbol"         : "MCHP",
+        "price"          : 74.57,
+        "shares"         : 100,
+        "strike"         : 80,
+        "premium"        : 7.5,
+        "dividend"       : 0.66,
+        "exp_date"       : "2023/7/21",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023/3/13",
+        "symbol"         : "STLD",
+        "price"          : 117.31,
+        "shares"         : 100,
+        "strike"         : 135,
+        "premium"        : 11.8,
+        "dividend"       : 1.27,
+        "exp_date"       : "2024/1/19",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023/3/14",
+        "symbol"         : "CSCO",
+        "price"          : 48.81,
+        "shares"         : 100,
+        "strike"         : 52.5,
+        "premium"        : 2.9,
+        "dividend"       : 1.17,
+        "exp_date"       : "2024/1/19",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023/3/14",
+        "symbol"         : "LYB",
+        "price"          : 88.64,
+        "shares"         : 100,
+        "strike"         : 94.8,
+        "premium"        : 6.8,
+        "dividend"       : 3.57,
+        "exp_date"       : "2024/1/19",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023/3/21",
+        "symbol"         : "VLO",
+        "price"          : 130.97,
+        "shares"         : 100,
+        "strike"         : 145,
+        "premium"        : 13.5,
+        "dividend"       : 3.06,
+        "exp_date"       : "2024/1/19",
+        "options_amount" : 1
+    }
+]

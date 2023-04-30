@@ -4,9 +4,8 @@ const SYMBOLS =
    "MMP", "MPLX", "MSFT", "NFG", "NUE", "ORI", "PRU", "STLD", "STOR", "SYY", "VALE", "WPC", "WSBC", "XOM"
 ];
 
-// const API_URL = "http://localhost:5000/finance";
-// const API_URL = "http://langindicator.com/finance";
-const API_URL = "https://langindicator.com/finance";
+// const API_URL = "http://options.langindicator.com:5000/finance";
+const API_URL = "https://options.langindicator.com/finance";
 
 const OPTIONS =
 {
@@ -14,18 +13,110 @@ const OPTIONS =
     headers: {}
 };
 
-let stockButtons = document.getElementById("stock_buttons");
-
-for(let symbol of SYMBOLS)
+function GetStockButtons()
 {
-    const button = document.createElement("button");
-    button.style = "padding: 5px; margin: 5px;";
-    button.innerText = symbol;
+    let stockButtons = document.getElementById("stock_buttons");
 
-    button.addEventListener("click", () => GetStockInfo(symbol.toUpperCase()));
+    for(let symbol of SYMBOLS)
+    {
+        const button = document.createElement("button");
+        button.style = "padding: 5px; margin: 5px;";
+        button.innerText = symbol;
     
-    stockButtons.appendChild(button);
-}    
+        button.addEventListener("click", () => GetStockInfo(symbol.toUpperCase()));
+        
+        stockButtons.appendChild(button);
+    }            
+}
+
+async function GetPortfolio()
+{
+    let portfolioContainer = document.getElementById("portfolio_container_1");
+
+    let url   = `${API_URL}/portfolio?q=amir`;
+    let response = await fetch (url, OPTIONS);
+    let data     = await response.json();
+
+    const table = document.createElement("table");
+    const tableHeader = document.createElement("tr");
+    tableHeader.innerHTML = '<th>Date</th><th>Symbol</th><th>Price</th><th>Shares</th><th>Cost</th><th>Strike</th><th>Change %</th> \
+                             <th>Premium</th><th>Premium %</th><th>Dividend</th><th>OTM</th><th>Yearly</th><th>ITM</th><th>Yearly</th><th>Exp Date</th>';
+
+    table.appendChild(tableHeader);
+
+    for(const record of data)
+    {
+        const strikeChange = (record.strike / record.price * 100 - 100).toFixed(2);
+        const premiumChange = (record.premium / record.price * 100).toFixed(2);
+        const otm = ((record.premium + record.dividend) / record.price * 100).toFixed(2);
+        const itm = ((record.strike - record.price + record.premium + record.dividend) / record.price * 100).toFixed(2);
+
+        const datesDif = (new Date(record.exp_date) - new Date(record.date)) / (1000 * 60 * 60 * 24);
+        const otmYearly = (otm / datesDif * 365).toFixed(2);
+        const itmYearly = (itm / datesDif * 365).toFixed(2);
+        
+        const cost = (record.price * record.shares).toLocaleString();
+
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${record.date}</td><td>${record.symbol}</td><td>${record.price}$</td><td>${record.shares}</td><td>${cost}$</td><td>${record.strike}$</td><td>${strikeChange}%</td> \
+                         <td>${record.premium}$</td><td>${premiumChange}%</td><td>${record.dividend}$</td><td>${otm}%</td><td>${otmYearly}%</td><td>${itm}%</td><td>${itmYearly}%</td><td>${record.exp_date}</td>`;
+        table.appendChild(row);
+    }
+
+    portfolioContainer.appendChild(table);
+}
+
+async function OnStatusButtonClick()
+{
+    let portfolioContainer = document.getElementById("portfolio_container_2");
+
+    portfolioContainer.innerHTML = '';
+    portfolioContainer.innerText = 'Loading...'
+
+    let url   = `${API_URL}/portfolio-status?q=amir`;
+    let response = await fetch (url, OPTIONS);
+    let data     = await response.json();
+
+    const table = document.createElement("table");
+    const tableHeader = document.createElement("tr");
+    tableHeader.innerHTML = '<th>Date</th><th>Symbol</th><th>Price</th><th>Shares</th><th>Cost</th><th>Strike</th><th>Change %</th> \
+                             <th>Premium</th><th>Premium %</th><th>Dividend</th><th>OTM</th><th>ITM</th><th>Exp Date</th><th class="th_c">Stock Price</th><th class="th_c">Option Price</th><th class="th_c">Current Rev %</th>';
+
+    table.appendChild(tableHeader);
+
+    for(const record of data)
+    {
+        const strikeChange = (record.strike / record.price * 100 - 100).toFixed(2);
+        const premiumChange = (record.premium / record.price * 100).toFixed(2);
+        const otm = ((record.premium + record.dividend) / record.price * 100).toFixed(2);
+        const itm = ((record.strike - record.price + record.premium + record.dividend) / record.price * 100).toFixed(2);
+
+        const datesDif = (new Date(record.exp_date) - new Date(record.date)) / (1000 * 60 * 60 * 24);
+        const otmYearly = (otm / datesDif * 365).toFixed(2);
+        const itmYearly = (itm / datesDif * 365).toFixed(2);
+        
+        const cost = (record.price * record.shares).toLocaleString();
+
+        const rev = (record.current_stock_price - record.price) + (record.premium - record.current_call_price) + record.dividend;
+        const currentRev = (rev / record.price * 100).toFixed(2);
+
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${record.date}</td><td>${record.symbol}</td><td>${record.price}$</td><td>${record.shares}</td><td>${cost}$</td><td>${record.strike}$</td><td>${strikeChange}%</td> \
+                         <td>${record.premium}$</td><td>${premiumChange}%</td><td>${record.dividend}$</td><td>${otm}%</td><td>${itm}%</td><td>${record.exp_date}</td><td>${record.current_stock_price}</td><td>${record.current_call_price}</td><td>${currentRev}%</td>`;
+
+        table.appendChild(row);
+    }
+
+    portfolioContainer.innerHTML = '';
+    portfolioContainer.appendChild(table);
+}
+
+window.onload = function ()
+{
+    var fileName = window.location.pathname.split('/').pop();
+
+    return (fileName == 'index.html') ? GetStockButtons() : GetPortfolio();
+};
 
 var input = document.getElementById("symbol_input");
 
@@ -179,7 +270,9 @@ async function GetStockInfo(symbol)
 function OnRunButtonClick()
 {
     const symbol = document.getElementById("symbol_input").value;
-    GetStockInfo(symbol.toUpperCase());
+    
+    if(symbol !== "")
+        GetStockInfo(symbol.toUpperCase());
 }
 
 function OnClearButtonClick()
