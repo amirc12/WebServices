@@ -79,8 +79,8 @@ async function OnStatusButtonClick()
 
     const table = document.createElement("table");
     const tableHeader = document.createElement("tr");
-    tableHeader.innerHTML = '<th>Date</th><th>Symbol</th><th>Price</th><th>Shares</th><th>Cost</th><th>Strike</th><th>Change %</th> \
-                             <th>Premium</th><th>Premium %</th><th>Dividend</th><th>OTM</th><th>ITM</th><th>Exp Date</th><th class="th_c">Stock Price</th><th class="th_c">Option Price</th><th class="th_c">Current Rev %</th>';
+    tableHeader.innerHTML = '<th>Date</th><th>Symbol</th><th>Price</th><th>Strike</th><th>Change %</th><th>Premium</th><th>Premium %</th><th>Dividend</th> \
+                             <th>OTM</th><th>ITM</th><th>Exp Date</th><th class="th_c">Stock Price</th><th class="th_c">Change %</th><th class="th_c">Option Price</th><th class="th_c">Type</th><th class="th_c">Current Rev %</th>';
 
     table.appendChild(tableHeader);
 
@@ -95,14 +95,14 @@ async function OnStatusButtonClick()
         const otmYearly = (otm / datesDif * 365).toFixed(2);
         const itmYearly = (itm / datesDif * 365).toFixed(2);
         
-        const cost = (record.price * record.shares).toLocaleString();
-
         const rev = (record.current_stock_price - record.price) + (record.premium - record.current_call_price) + record.dividend;
         const currentRev = (rev / record.price * 100).toFixed(2);
 
+        const stockPriceChange = (record.current_stock_price / record.price * 100 - 100).toFixed(2);
+
         const row = document.createElement("tr");
-        row.innerHTML = `<td>${record.date}</td><td>${record.symbol}</td><td>${record.price}$</td><td>${record.shares}</td><td>${cost}$</td><td>${record.strike}$</td><td>${strikeChange}%</td> \
-                         <td>${record.premium}$</td><td>${premiumChange}%</td><td>${record.dividend}$</td><td>${otm}%</td><td>${itm}%</td><td>${record.exp_date}</td><td>${record.current_stock_price}</td><td>${record.current_call_price}</td><td>${currentRev}%</td>`;
+        row.innerHTML = `<td>${record.date}</td><td>${record.symbol}</td><td>${record.price}$</td><td>${record.strike}$</td><td>${strikeChange}%</td><td>${record.premium}$</td><td>${premiumChange}%</td><td>${record.dividend}$</td> \
+                         <td>${otm}%</td><td>${itm}%</td><td>${record.exp_date}</td><td>${record.current_stock_price.toFixed(2)}</td><td>${stockPriceChange}%</td><td>${record.current_call_price}</td><td>${record.call_price_type}</td><td>${currentRev}%</td>`;
 
         table.appendChild(row);
     }
@@ -115,7 +115,7 @@ window.onload = function ()
 {
     var fileName = window.location.pathname.split('/').pop();
 
-    return (fileName == 'index.html') ? GetStockButtons() : GetPortfolio();
+    return (fileName !== 'portfolio.html') ? GetStockButtons() : GetPortfolio();
 };
 
 var input = document.getElementById("symbol_input");
