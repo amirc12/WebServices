@@ -1,0 +1,24 @@
+[
+    {
+        "date"           : "2022-09-19",
+        "symbol"         : "CAT",
+        "price"          : 182.73,
+        "shares"         : 100,
+        "strike"         : 190,
+        "premium"        : 18.2,
+        "dividend"       : 2.4,
+        "exp_date"       : "2023-06-16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022-09-19",
+        "symbol"         : "XOM",
+        "price"          : 93.38,
+        "shares"         : 100,
+        "strike"         : 97.5,
+        "premium"        : 9.3,
+        "dividend"       : 1.76,
+        "exp_date"       : "2023-06-16",
+        "options_amount" : 1
+    }
+]

@@ -1,0 +1,34 @@
+.filter_bar
+{
+    display               : grid;
+    grid-template-columns : 5fr 1fr;
+    column-gap            : 5px;
+    padding               : 10px;
+    border-bottom         : 1px solid gray;
+    position              : -webkit-sticky;  /* Safari */
+    position              : sticky;
+    top                   : 0;
+    background-color      : white;
+}
+
+.filter_form
+{
+    /* display               : none; */
+    display               : grid;
+    grid-template-columns : 1fr 1fr 2fr 2fr;
+    padding               : 10px;
+    border-bottom         : 1px solid gray;
+}
+
+.stock_cards_container
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    /* max-width: 100%;
+    padding: 5px; */
+}
+
+@media only screen and (max-width: 900px) 
+{
+}

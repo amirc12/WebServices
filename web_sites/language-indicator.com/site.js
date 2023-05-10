@@ -28,9 +28,9 @@ window.onload = function ()
 	    setInterval(change, 400);
 };
 
-const API_URL = "https://language-indicator.com/contact";
+// const API_URL = "https://language-indicator.com/contact";
 // const API_URL = "http://127.0.0.1/contact?a=1";
-// const API_URL = "http://language-indicator.com:5000/contact";
+const API_URL = "http://language-indicator.com:5000/contact";
 
 
 async function OnSendMessageButtonClick()

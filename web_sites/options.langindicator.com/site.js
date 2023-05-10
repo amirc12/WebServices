@@ -4,8 +4,8 @@ const SYMBOLS =
    "MMP", "MPLX", "MSFT", "NFG", "NUE", "ORI", "PRU", "STLD", "STOR", "SYY", "VALE", "WPC", "WSBC", "XOM"
 ];
 
-// const API_URL = "http://options.langindicator.com:5000/finance";
-const API_URL = "https://options.langindicator.com/finance";
+const API_URL = "http://options.langindicator.com:5000/finance";
+// const API_URL = "https://options.langindicator.com/finance";
 
 const OPTIONS =
 {

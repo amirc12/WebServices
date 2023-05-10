@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path       = require("path");
+const utils = require('../utils');
 
 const fetch = require("node-fetch");
 const express = require("express");
@@ -28,7 +29,7 @@ router.get("/portfolio", function (req, response, next)
 {
     const name = req.query.q;
 
-    let filePath = path.join(process.cwd() + "/src/" + req.hostname.replace('www.', '') + "/portfolio.json");
+    const filePath = utils.getCurrentDomainFilePath(req, "portfolio.json");
     const portfolioData = require(filePath);
 
     response.append("Access-Control-Allow-Origin", "*");
@@ -113,7 +114,7 @@ async function getPortfolioStatus(req, res)
 {
     const name = req.query.q;
 
-    const filePath = path.join(process.cwd() + "/src/" + req.hostname.replace('www.', '') + "/portfolio.json");
+    const filePath = utils.getCurrentDomainFilePath(req, "portfolio.json");
     const portfolioData = require(filePath);
 
     let symbols = portfolioData.reduce((acc, item) => acc + item.symbol + ',', '');

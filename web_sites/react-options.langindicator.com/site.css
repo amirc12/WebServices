@@ -1,0 +1,343 @@
+* 
+{
+	box-sizing: border-box;
+    padding: 0px;
+}
+
+body 
+{
+  font-family      : Verdana, Arial, sans-serif;
+  font-size        : 16px;
+  /* letter-spacing   : 1px; */
+  line-height      : 1.5;
+  color            : #5A5A64;
+  /* background-color : #F4F4F4; */
+  padding          : 0px;
+  margin           : 0px auto;
+  width            : 90%;
+  /* max-width        : 1400px; */
+}
+
+header 
+{
+    display          : flex;
+    align-items      : center;
+    background-color : rgb(37, 98, 183);
+    color            : white;
+    padding          : 15px;
+}
+
+.logo 
+{
+    flex             : 2;
+    align-items      : center;
+    color            : white;
+    font-size        : 38px;
+    padding          : 10px 30px;
+}
+
+.logo_subtitle
+{
+    font-size   : 16px;
+    margin-left : 20px;
+    margin-top  : 5px;
+    color       : #eec75e;
+}
+
+.topnav 
+{
+    flex            : 1;
+    display         : flex;
+    justify-content : center;
+    overflow        : hidden;
+    padding         : 10px;
+    font-size       : 18px;
+}
+
+.topnav a 
+{
+  color: White;
+  text-align: center;
+  padding: 6px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover 
+{
+  color: #eec75e;
+}
+
+.topnav a.active 
+{
+  color: #eec75e;
+  border-bottom: 2px solid #eec75e;
+}
+
+button 
+{
+    background-color : white;
+    border           : none;
+    border-radius    : 5px;
+    color            : blue;
+    padding          : 5px;
+    text-align       : center;
+    text-decoration  : none;
+    display          : inline-block;
+    font-family      : Verdana, Arial, sans-serif;
+    font-size        : 14px;
+    margin           : 4px 2px;
+    cursor           : pointer;
+}
+
+button:hover
+{
+    text-decoration: underline;
+}
+
+.action_button
+{
+    background-color : lightgray;
+    border           : none;
+    border-radius    : 5px;
+    color            : rgb(43, 41, 41);
+    padding          : 5px;
+    text-align       : center;
+    text-decoration  : none;
+    display          : inline-block;
+    font-family      : Verdana, Arial, sans-serif;
+    font-size        : 14px;
+    margin           : 4px 2px;
+    cursor           : pointer;
+    font-weight: 400;
+}
+
+.action_button:hover
+{
+    background-color : rgb(85, 82, 82);
+    color            : white;
+    text-decoration: underline;
+}
+
+.card 
+{
+    border           : 1px solid gray;
+    margin-top       : 15px;
+    background-color : white;
+    box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+}
+
+.title
+{
+    /* border-bottom: 1px solid lightgray; */
+    /* background-color:rgb(218, 235, 241); */
+    color: #0b1354;
+    font-size: 16px;
+    /* padding: 5px; */
+    cursor: pointer;
+    max-width: 100%;
+}
+
+.stock_container
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    /* max-width: 100%;
+    padding: 5px; */
+}
+
+.portfolio_container
+{
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px; */
+    margin-top: 20px;
+    /* max-width: 100%;
+    padding: 5px; */
+}
+
+h1
+{
+    margin: 5px 0px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.content
+{
+    display: block;
+    padding: 10px;
+}
+
+.p
+{
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.address
+{
+    display: flex;
+    align-items: center;
+}
+
+table
+{
+    border-collapse: collapse;
+    border:1px solid gray;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    /* table-layout: auto; */
+}
+
+th
+{
+    border-collapse: collapse;
+    border:1px solid gray;
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color: lightgray;
+    color: black;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.th_c
+{
+    border-collapse: collapse;
+    border:1px solid gray;
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color: rgb(138, 214, 25);
+    color: black;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+td 
+{
+    border-collapse: collapse;
+    border:1px solid gray;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 14px;
+    color: black;
+}
+
+.title_table
+{
+    /* border-collapse: collapse; */
+    /* background-color: azure; */
+    border:0px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.title_table th
+{
+    border-collapse: collapse;
+    /* border:1px solid gray; */
+    padding-left: 3px;
+    padding-right: 3px;
+    background-color: rgb(59, 57, 57);
+    font-weight: normal;
+    color: white;
+}
+
+.title_table td
+{
+    border-collapse: collapse;
+    border:0px solid gray;
+    /* padding: 5px; */
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.filter_bar
+{
+    display               : grid;
+    grid-template-columns : 5fr 1fr;
+    column-gap            : 5px;
+    padding               : 10px;
+    border-bottom         : 1px solid gray;
+    position              : -webkit-sticky;  /* Safari */
+    position              : sticky;
+    top                   : 0;
+    background-color      : white;
+}
+
+.filter_fields
+{
+    display               : none;
+    grid-template-columns : 1fr 1fr 2fr 2fr;
+    padding               : 10px;
+    border-bottom         : 1px solid gray;
+}
+
+@media only screen and (max-width: 900px) 
+{
+    body 
+    {
+        width            : 100%;
+        margin           : 0 auto;
+    }
+
+    header 
+    {
+        font-size: 28px;
+        padding: 5px;
+    }
+    
+    .card 
+    {
+        /* margin     : 1em auto; */
+        width        : 99%;
+        max-width    : 100%;
+        box-shadow   : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+        justify-self : center;
+    }
+
+    .title
+    {
+        font-size: 14px;
+    }
+
+    th
+    {
+        font-size: 14px;
+    }
+    
+    td 
+    {
+        font-size: 13px;
+    }
+        
+    .stock_container
+    {
+        display: grid;
+        grid-template-columns: auto;
+    }
+
+    .stock_buttons
+    {
+        display: none;
+    }
+
+    table, th, td 
+    {
+        padding: 5px;
+    }
+
+    .filter_fields
+    {
+        display               : none;
+        grid-template-columns : 1fr;
+    }
+}
