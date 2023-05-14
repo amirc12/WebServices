@@ -1,13 +1,13 @@
 require('dotenv').config()
 
-const fs = require("fs");
-
 const express = require("express");
 
-const translator = require("./routes/translate");
-const finance = require("./routes/finance");
+const fs         = require("fs");
 const bodyParser = require('body-parser');
-const utils = require('./utils');
+const utils      = require('./utils');
+const translator = require("./routes/translate");
+const finance    = require("./routes/finance");
+const studio     = require("./routes/studio");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,6 +17,7 @@ app.use(bodyParser.text());
 app.use(express.json());
 app.use("/translate", translator);
 app.use("/finance", finance);
+app.use("/studio", studio);
 
 app.post("/", (req, res)=> 
 {
@@ -26,14 +27,6 @@ app.post("/", (req, res)=>
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server listening at http://localhost:${PORT}`) );
-
-//Workaround to host web sites of of different domains (language-indicator and hamadaf-hakatan)
-app.get(/[a-z]|\//, (req, res) => 
-{
-    const fileName = (req.originalUrl == "/") ? "/index.html" : req.originalUrl;
-    const filePath = utils.getCurrentDomainFilePath(req, fileName);
-    return res.sendFile(filePath);
-});
 
 //Handle contact us request
 app.post("/contact", (req, res) => 
@@ -71,4 +64,14 @@ app.post("/contact", (req, res) =>
     // res.setHeader('Location', '/');
     // return res.end();
 });
+
+//Workaround to host web sites of of different domains (language-indicator and hamadaf-hakatan)
+app.get(/[a-z]|\//, (req, res) => 
+{
+    //little patch to support editor page of SHIRCO STUDIO
+    const fileName = (req.originalUrl == "/" || req.originalUrl == "/editor") ? "/index.html" : req.originalUrl;
+    const filePath = utils.getCurrentDomainFilePath(req, fileName);
+    return res.sendFile(filePath);
+});
+
 
