@@ -12,6 +12,9 @@ router.post("/update_plan", function (req, response, next)
 
     const plan = JSON.parse(req.body);
 
+    if(plan.hasOwnProperty('edit'))
+        delete plan.edit;
+
     const index = weekPlan.findIndex(item => item.header === plan.header);
     weekPlan.splice(index, 1, plan);    
 

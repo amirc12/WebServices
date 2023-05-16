@@ -2,14 +2,14 @@
 {
     padding-top: 20px;
     display: flex;
-    column-gap: 7px;
+    column-gap: 8px;
 }
 
 .training_card
 {
     /* display: flex; */
     flex: 1;
-    border: 1px solid gray;
+    border: 1px solid rgb(162, 159, 159);
     /* padding: 5px; */
     background-color: rgb(246, 251, 251);
 }
@@ -37,6 +37,7 @@
     row-gap: 15px;
     background-color: azure;
     /* flex: 1; */
+    /* color: beige; */
 }
 
 .container div

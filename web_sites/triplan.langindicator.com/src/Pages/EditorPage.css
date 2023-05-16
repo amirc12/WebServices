@@ -1,0 +1,137 @@
+.editor_container
+{
+    display: flex;
+    column-gap: 30px;
+    padding-top: 20px;
+}
+
+.trip_view
+{
+    flex: 1;
+    border           : 1px solid lightgray;
+    border-radius    : 5px;
+    padding          : 10px;
+    /* background-color : rgb(228, 167, 70) */
+}
+
+.trip_plan
+{
+    flex: 1;
+    font-family: arial, helvetica, sans-serif;
+    font-size: medium;
+    font-weight: 500;
+    border: 1px solid lightgray;
+    /* border-radius: 10px; */
+    padding: 10px;
+}
+
+.trip_info
+{
+    border           : 1px solid lightgray;
+    /* border-radius    : 5px;
+    padding          : 10px; */
+    background-color : rgb(247, 248, 249);
+    box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+}
+
+.trip_info_title
+{
+    padding-right : 10px;
+    /* border           : 1px solid lightgray; */
+    border-bottom : 1px solid lightgray;
+    font-weight   : bold
+}
+
+.trip_info_title img
+{
+    width  : 25px;
+    height : 25px;
+    float  : left;
+}
+
+.trip_info_content
+{
+    /* border        : 1px solid lightgray; */
+    padding-right : 10px;
+    padding-left  : 10px;
+}
+
+.content_hide
+{
+    display: none;
+}
+
+.day_card
+{
+    margin-top       : 20px;
+    border           : 1px solid lightgray;
+    /* border-radius    : 5px; */
+    padding          : 10px;
+    background-color : rgb(247, 248, 249);
+    box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+}
+
+.day_item
+{
+    border           : 1px solid lightgray;
+    border-radius    : 10px;
+    background-color : rgb(242, 246, 251);
+    padding          : 10px;
+    margin-top       : 10px;
+    margin-bottom    : 15px;
+}
+
+.content_card
+{
+    /* border: 1px solid gray; */
+    background-color: rgb(246, 251, 251);
+    padding: 10px;
+    width: 100%;
+    min-height: 300px;
+    /* min-width: 150px; */
+    /* flex: 1; */
+}
+
+.editor_card
+{
+    border-left: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 10px;
+    min-width: 250px;
+    row-gap: 15px;
+    background-color: azure;
+    /* flex: 1; */
+}
+
+.container div
+{
+    /* border: 1px solid black; */
+}
+
+button
+{
+    background: transparent;
+    margin-left: 40px;
+    /* float: right; */
+}
+
+@media only screen and (max-width: 900px) 
+{
+    .container
+    {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    .editor_card
+    {
+        padding: 10px;
+        /* min-width: 300px; */
+        width: 90%;
+    }
+}

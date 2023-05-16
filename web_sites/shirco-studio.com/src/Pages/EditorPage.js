@@ -12,10 +12,11 @@ const constants = require("../constants");
 
 const styles =
 {
-    button      : {height: '25px', marginLeft: '5px', margin: '5px', backgroundColor: 'white'},
-    filterInput : {height: '25px', width: '60px', marginLeft: '10px'},
-    textField   : {backgroundColor: 'white', width: '100%'},
-    cardTitle   : {display: 'flex', alignItems: 'center', backgroundColor: 'lightblue', color: 'black', paddingLeft: '20px', borderBottom: '1px solid gray'}
+    button       : {height: '25px', marginLeft: '5px', margin: '5px', backgroundColor: 'white', color: 'rgb(231, 24, 115)'},
+    filterInput  : {height: '25px', width: '60px', marginLeft: '10px'},
+    textField    : {backgroundColor: 'white', width: '100%'},
+    textFieldRtl : {backgroundColor: 'white', width: '100%', direction: 'rtl'},
+    cardTitle    : {display: 'flex', alignItems: 'center', backgroundColor: 'rgb(231, 24, 115)', color: 'white', paddingLeft: '20px', borderBottom: '1px solid gray'}
 };
 
 function EditorCard({data, onDataChanged})
@@ -32,10 +33,24 @@ function EditorCard({data, onDataChanged})
         onDataChanged(data);
     }
 
+    function onExDetailsChanged(e)
+    {
+        data.ex_details = e.target.value;
+        onDataChanged(data);
+    }
+
+    function onWarmupChanged(e)
+    {
+        data.warm_up = e.target.value;
+        onDataChanged(data);
+    }
+    
     return(
         <div className='editor_card'>
             <TextField style={styles.textField} size='small' label="Training Name" defaultValue={data.name} onChange={onNameChanged}/>
+            <TextField style={styles.textField} multiline label="Warm Up" rows={10} defaultValue={data.warm_up} onChange={onWarmupChanged}/>
             <TextField style={styles.textField} multiline label="Training Details" rows={20} defaultValue={data.details} onChange={onDetailsChanged}/>
+            <TextField style={styles.textFieldRtl} multiline label="מילה של מאמנת" rows={10} defaultValue={data.ex_details} onChange={onExDetailsChanged}/>
         </div>
     );
 }
@@ -44,8 +59,11 @@ function ContentCard({data})
 {
     return(
         <div className='content_card'>
-            <div style={{borderBottom: "1px solid lightgray", padding: "5px"}}>{data.name}</div>
+            <div style={{borderBottom: "2px solid rgb(231, 24, 115)", padding: "5px"}}>{data.name}</div>
+            <div style={{marginTop: "5px", padding: "5px", borderBottom: "1px solid lightgray", whiteSpace: "pre-wrap"}}>{data.warm_up}</div>
             <div style={{marginTop: "5px", padding: "5px", whiteSpace: "pre-wrap"}}>{data.details}</div>
+            <div style={{backgroundColor: 'beige', border: "1px solid lightgray", padding: "5px", marginTop: '10px', direction: 'rtl'}}>מילה של מאמנת</div>
+            <div style={{backgroundColor: 'beige', border: "1px solid lightgray", padding: "5px", whiteSpace: "pre-wrap", direction: 'rtl'}}>{data.ex_details}</div>
         </div>
     );
 }

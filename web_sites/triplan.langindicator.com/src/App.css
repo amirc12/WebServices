@@ -7,19 +7,19 @@ header
 {
     display          : flex;
     align-items      : center;
-    /* background-color : rgb(37, 98, 183); */
-    background-color : rgb(249, 182, 94);
+    background-color : rgb(37, 98, 183);
     /* background-color : rgb(241, 147, 25); */
     color            : white;
     padding          : 15px;
+    direction: ltr;
 }
 
 .logo 
 {
     flex             : 3;
     align-items      : center;
-    /* color            : white; */
-    color            : rgb(231, 24, 115);
+    color            : white;
+    /* color            : rgb(231, 24, 115); */
     font-size        : 38px;
     padding          : 10px 30px;
 }
@@ -52,17 +52,17 @@ header
 
 .topnav a:hover 
 {
-  /* color: #eec75e; */
-  color            : rgb(231, 24, 115);
+  color: #eec75e;
+  /* color            : rgb(231, 24, 115); */
   cursor: pointer;
 }
 
 .topnav a.active 
 {
-    color            : rgb(231, 24, 115);
-    border-bottom: 2px solid rgb(231, 24, 115);
-    /* color: #eec75e;
-     border-bottom: 2px solid #eec75e; */
+    /* color            : rgb(231, 24, 115);
+    border-bottom: 2px solid rgb(231, 24, 115); */
+    color: #eec75e;
+     border-bottom: 2px solid #eec75e;
 }
 
 .topnav div.no_active 

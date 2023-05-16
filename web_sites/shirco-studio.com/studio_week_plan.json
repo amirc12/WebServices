@@ -12,12 +12,14 @@
   {
     "header": "Tuesday",
     "name": "Bodyweight",
-    "details": "Warm up, 3 rounds:\n10 Cossack squat\n10 reverse burpee\n10 comando\n\n2-4-6-8-10-12\nTRX SL squat+ twist (R,L)\nTRX push up\n\n5-10-15-20\nBand biceps curl\nLateral raises\nEvery round- 60 twist jump\n\nTABATA-\nSide to side plank\nInstead of 10 sec rest- do burpee\n\n"
+    "details": "2-4-6-8-10-12\nTRX SL squat+ twist (R,L)\nTRX push up\n\n5-10-15-20\nBand biceps curl\nLateral raises\nEvery round- 60 twist jump\n\nTABATA-\nSide to side plank\nInstead of 10 sec rest- do burpee\n\n",
+    "warm_up": "Warm up, 3 rounds:\n10 Cossack squat\n10 reverse burpee\n10 comando"
   },
   {
     "header": "Wednesday",
     "name": "Girls Power",
-    "details": "Warm up, 10 min Amrap-\n1 min stairs step up\n10 side to side squat jump\n10 birddog \n30 sec hang\n\n15 min AMRAP:\n12 KB swing\n6 sitting good morning\n6 sumo goblet squat\n10-20-30-40-50.. jumping jack\n\n15 min AMRAP:\n10 ball pull over\n12 ball crunches sit up\n10 high glute bridge\n10-20-30-40-50.. jumping jack"
+    "details": "15 min AMRAP:\n12 KB swing\n6 sitting good morning\n6 sumo goblet squat\n10-20-30-40-50.. jumping jack\n\n15 min AMRAP:\n10 ball pull over\n12 ball crunches sit up\n10 high glute bridge\n10-20-30-40-50.. jumping jack",
+    "warm_up": "Warm up, 10 min Amrap-\n1 min stairs step up\n10 side to side squat jump\n10 birddog \n30 sec hang"
   },
   {
     "header": "Thursday",
@@ -26,7 +28,9 @@
   },
   {
     "header": "Friday",
-    "name": "",
-    "details": ""
+    "name": "aabbttsdf",
+    "details": "details",
+    "ex_details": "געכליך גכעי ךגכע גדכע גכע גדכ\nע גדכ\nע גדכ\nע גדכ\nע גדכע\nגכע",
+    "warm_up": "warm up"
   }
 ]

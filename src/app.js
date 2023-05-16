@@ -8,6 +8,7 @@ const utils      = require('./utils');
 const translator = require("./routes/translate");
 const finance    = require("./routes/finance");
 const studio     = require("./routes/studio");
+const triplan    = require("./routes/triplan");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/translate", translator);
 app.use("/finance", finance);
 app.use("/studio", studio);
+app.use("/plan", triplan);
 
 app.post("/", (req, res)=> 
 {
