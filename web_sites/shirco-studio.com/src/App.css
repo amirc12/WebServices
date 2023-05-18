@@ -7,11 +7,11 @@ header
 {
     display          : flex;
     align-items      : center;
-    /* background-color : rgb(37, 98, 183); */
     background-color : rgb(249, 182, 94);
-    /* background-color : rgb(241, 147, 25); */
     color            : white;
     padding          : 15px;
+    margin           : auto;
+    width            : 90%;
 }
 
 .logo 
@@ -162,23 +162,27 @@ button:hover
 
 @media only screen and (max-width: 900px) 
 {
-    header 
+	header 
+	{
+        flex-direction : column;
+        font-size      : 30px;
+        padding : 1px;
+	}
+
+    .logo
     {
-        padding : 5px;
+        font-size : 26px;
+        padding   : 5px 10px;
     }
-    
-    .logo 
+
+    .topnav 
     {
-        flex             : 3;
-        align-items      : center;
-        color            : white;
-        font-size        : 26px;
-        padding          : 10px 10px;
+        padding         : 1px;
     }
 
     .topnav div 
     {
-        padding         : 6px 6px;
+        padding         : 1px 1px;
         text-decoration : none;
     }
 }

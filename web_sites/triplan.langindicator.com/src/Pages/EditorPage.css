@@ -1,3 +1,8 @@
+.content_hide
+{
+    display: none;
+}
+
 .editor_container
 {
     display: flex;
@@ -28,18 +33,18 @@
 .trip_info
 {
     border           : 1px solid lightgray;
-    /* border-radius    : 5px;
-    padding          : 10px; */
-    background-color : rgb(247, 248, 249);
+    /* background-color : rgb(247, 248, 249); */
     box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
 }
 
 .trip_info_title
 {
-    padding-right : 10px;
-    /* border           : 1px solid lightgray; */
-    border-bottom : 1px solid lightgray;
-    font-weight   : bold
+    display          : flex;
+    align-items      : center;
+    padding-right    : 10px;
+    background-color : rgb(247, 248, 249);
+    border-bottom    : 1px solid lightgray;
+    font-weight      : bold
 }
 
 .trip_info_title img
@@ -56,26 +61,30 @@
     padding-left  : 10px;
 }
 
-.content_hide
-{
-    display: none;
-}
-
 .day_card
 {
-    margin-top       : 20px;
-    border           : 1px solid lightgray;
-    /* border-radius    : 5px; */
-    padding          : 10px;
+    padding-bottom : 10px;
+    margin-top     : 20px;
+    border         : 1px solid lightgray;
+    box-shadow     : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+}
+
+.day_card_title
+{
+    display          : flex;
+    align-items      : center;
+    padding-right    : 10px;
     background-color : rgb(247, 248, 249);
-    box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+    border-bottom    : 1px solid lightgray;
+    font-weight      : bold
 }
 
 .day_item
 {
-    border           : 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    /* border           : 1px solid lightgray;
     border-radius    : 10px;
-    background-color : rgb(242, 246, 251);
+    background-color : rgb(242, 246, 251); */
     padding          : 10px;
     margin-top       : 10px;
     margin-bottom    : 15px;

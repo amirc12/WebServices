@@ -9,9 +9,11 @@ import EditIcon from '@mui/icons-material/Edit';
 import CancelIcon from '@mui/icons-material/Cancel';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Block } from '@mui/icons-material';
 
+const moment = require("moment");
 const constants = require("../constants");
+
+const WEEK_DAYS = ['ראשון', 'שני', 'שלישי', 'רביעי', 'חמישי', 'שישי', 'שבת'];
 
 const sx = 
 {
@@ -31,11 +33,11 @@ const styles =
     addButton      : {height: '25px', marginTop: '10px', marginLeft: '10px', color: 'rgb(37, 98, 183)', border: '1px solid rgb(37, 98, 183)', backgroundColor: 'white', textTransform: 'none', fontSize: '16px'},
     deleteButton   : {flex: '2', height: '35px', marginTop: '10px', marginLeft: '10px', color: 'red', border: '1px solid red', backgroundColor: 'white', textTransform: 'none', fontSize: '16px', fontWeight: 'bold'},
     filterInput    : {height: '25px', width: '60px', marginLeft: '10px'},
-    infoField      : {flex: '1', marginTop: '10px', backgroundColor: 'white', width: '100%', direction: 'rtl'},
+    infoField      : {flex: '1', marginTop: '10px', backgroundColor: 'rgb(247, 248, 249)', width: '100%', direction: 'rtl'},
     itemField      : {flex: '1', marginTop: '3px', backgroundColor: 'white', width: '100%', direction: 'rtl'},
     cardTitle      : {display: 'flex', alignItems: 'center', backgroundColor: 'lightblue', color: 'black', paddingLeft: '20px', borderBottom: '1px solid gray'},
     tripLoader     : {margin: 'auto', marginTop: '10%', width: '400px', border: '1px solid lightgray', padding: '50px', direction: 'ltr', borderRadius: '10px', backgroundColor: 'rgb(242, 246, 251)'},
-    datesContainer : {paddingBottom: '10px', display: 'flex', columnGap: '20px'}
+    datesContainer : {paddingTop: '5px', paddingBottom: '10px', display: 'flex', columnGap: '20px'}
 };
 
 async function fetchTripPlan(planId)
@@ -92,8 +94,9 @@ function InfoTextField({style=styles.infoField, label, fieldKey, text, onDataCha
 
 function DayItem({data, onDataChange})
 {
-    const [dayItem, setDayItem] = useState(data);
-    const [itemText, setItemText] = useState(data.text);
+    const [isEditMode, setIsEditMode] = useState(false);
+    const [dayItem, setDayItem]       = useState(data);
+    const [itemText, setItemText]     = useState(data.text);
 
     function onChange(e)
     {
@@ -109,22 +112,41 @@ function DayItem({data, onDataChange})
 
     return(
         <div className='day_item'>
-            <InfoTextField style={styles.itemField} fieldKey="title" label="כותרת" text={data.title} onDataChange={handleDataChange} />
-            <InfoTextField style={styles.itemField} fieldKey="content" label="תוכן" text={data.content} onDataChange={handleDataChange} />
-            <InfoTextField style={styles.itemField} fieldKey="address" label="כתובת" text={data.address} onDataChange={handleDataChange} />
-            <InfoTextField style={styles.itemField} fieldKey="link" label="קישור לאתר אינטרנט" text={data.link} onDataChange={handleDataChange} />
+            <Button style={{flex: '1'}} variant="text" onClick={() => setIsEditMode(!isEditMode)}>{isEditMode ? 'סגירה' : 'עריכה'}</Button>
+            {isEditMode
+            ?
+                <div>
+                    <TextField sx={sx} style={styles.itemField} size='small' label='כותרת' defaultValue={data.title} onChange={handleDataChange}/>
+                    <TextField sx={sx} style={styles.itemField} size='small' label='תוכן' defaultValue={data.content} onChange={handleDataChange} multiline rows={3}/>
+                    <TextField sx={sx} style={styles.itemField} size='small' label='כתובת' defaultValue={data.address} onChange={handleDataChange}/>
+                    <TextField sx={sx} style={styles.itemField} size='small' label='קישור לאתר אינטרנט' defaultValue={data.link} onChange={handleDataChange}/>
+                </div>
+            :
+                <div>
+                     <div>{data.title}</div>
+                     <div style={{whiteSpace: "pre-wrap"}}>{data.content}</div>
+                     <div>{data.address}</div>
+                     <div>{data.link}</div>
+                </div>
+            }
         </div>
     );
 }
 
+{/* <InfoTextField style={styles.itemField} fieldKey="title" label="כותרת" text={data.title} onDataChange={handleDataChange} />
+<InfoTextField style={styles.itemField} fieldKey="content" label="תוכן" text={data.content} onDataChange={handleDataChange} />
+<InfoTextField style={styles.itemField} fieldKey="address" label="כתובת" text={data.address} onDataChange={handleDataChange} />
+<InfoTextField style={styles.itemField} fieldKey="link" label="קישור לאתר אינטרנט" text={data.link} onDataChange={handleDataChange} /> */}
+
 function DayCard({data, onDayChange, onDayDelete})
 {
-    const [dayPlan, setDayPlan] = useState(data);
+    const [isExpand, setIsExpand] = useState(false);
+    const [dayPlan, setDayPlan]   = useState(data);
 
     function onAddItem(type)
     {
         const number = dayPlan.items.length + 1;
-        dayPlan.items.push({number: number, type: type});
+        dayPlan.items.push({number: number, type: type, title: 'כותרת', content: 'תוכן', address: 'כתובת', link: 'קישור'});
         onDayChange({...dayPlan});
     }
 
@@ -134,22 +156,19 @@ function DayCard({data, onDayChange, onDayDelete})
         setDayPlan({...dayPlan, items: items});
     }
 
-    function handleNumberChange(fieldKey, value)
-    {
-        setDayPlan({...dayPlan, number: value});
-    }
-
     const items = dayPlan.items.map((item) => <DayItem data={item} onDataChange={handleDataChange}/>);
 
+    const titleText = `${data.number}. יום ${data.week_day}, ${data.date}`;
     return(
         <div className='day_card'>
-            <div style={{display: 'flex', columnGap: '50%'}}>
-                <InfoTextField fieldKey="number" label="יום מספר" text={data.number} onDataChange={handleNumberChange} />
-                <Button style={styles.deleteButton} onClick={() => onDayDelete(dayPlan.number)}>מחק יום זה</Button>
+            <div className='day_card_title'>
+                <div style={{flex: '12'}}>{titleText}</div>
+                <IconButton style={{flex: '1'}} onClick={() => setIsExpand(!isExpand)}>{isExpand ? <ExpandLessIcon/> : <ExpandMoreIcon/>}</IconButton>
             </div>
-            {items}
-            <Button style={styles.addButton} onClick={() => onAddItem('attraction')}>הוספת מקטע</Button>
-            {/* <Button style={styles.addButton} onClick={() => onAddItem('comment')}>הוספת טקסט חופשי</Button> */}
+            <div className={isExpand ? 'trip_info_content' : 'content_hide'}>
+                {items}
+                <Button style={styles.addButton} onClick={() => onAddItem('attraction')}>הוספת מקטע</Button>
+            </div>
         </div>
     );
 }
@@ -168,9 +187,10 @@ function TripInfo({data, onDataChange})
 
     return(
         <div className='trip_info'>   
-            <div className='trip_info_title'>מידע כללי
-                <Button variant="text" onClick={() => setIsEditMode(!isEditMode)}>{isEditMode ? 'סגירה' : 'עריכה'}</Button>
-                <IconButton style={{float: 'left'}} onClick={() => setIsExpand(!isExpand)}>{isExpand || isEditMode ? <ExpandLessIcon/> : <ExpandMoreIcon/>}</IconButton>
+            <div className='trip_info_title'>
+                <div style={{flex: '10'}}>מידע כללי</div>
+                <Button style={{flex: '1'}} variant="text" onClick={() => setIsEditMode(!isEditMode)}>{isEditMode ? 'סגירה' : 'עריכה'}</Button>
+                <IconButton style={{flex: '1'}} onClick={() => setIsExpand(!isExpand)}>{isExpand || isEditMode ? <ExpandLessIcon/> : <ExpandMoreIcon/>}</IconButton>
             </div>
             <div className={isExpand || isEditMode ? 'trip_info_content' : 'content_hide'}>
                 {isEditMode 
@@ -185,11 +205,11 @@ function TripInfo({data, onDataChange})
                     </div> 
                 : 
                     <div>
-                        <div style={{whiteSpace: "pre-wrap"}}>{data.title}</div>
-                        <div style={{whiteSpace: "pre-wrap"}}>{data.sub_title}</div>
+                        <div>{data.title}</div>
+                        <div>{data.sub_title}</div>
                         <div style={styles.datesContainer}>
-                            <div style={{whiteSpace: "pre-wrap"}}>{data.start_date}</div>
-                            <div style={{whiteSpace: "pre-wrap"}}>{data.end_date}</div>
+                            <div>{data.start_date}</div>
+                            <div>{data.end_date}</div>
                         </div>                  
                     </div>
                 }
@@ -203,9 +223,13 @@ function TripPlan({data, onDataChange})
     const [tripPlan, setTripPlan] = useState(data);
 
     function onAddDay()
-    {        
+    {       
         const dayNumber = tripPlan.days.length + 1;
-        tripPlan.days.push({number: dayNumber, items: []});
+
+        const date = moment(tripPlan.start_date).add(dayNumber, "days").format("DD/MM/YYYY");
+        const weekDay = moment(tripPlan.start_date).add(dayNumber, "days").weekday();
+
+        tripPlan.days.push({number: dayNumber, date: date, week_day: WEEK_DAYS[weekDay], items: []});
         setTripPlan({...tripPlan});
     }
 
@@ -244,7 +268,7 @@ function TripPlan({data, onDataChange})
             {/* <div style={{paddingRight: '10px', marginTop: '20px', borderBottom: '1px solid lightgray', fontWeight: 'bold'}}>פירוט ימים</div> */}
             {days}
             <Button style={styles.addButton} onClick={onAddDay}>הוספת יום</Button>
-            <div><Button style={styles.button} onClick={onSaveChanges} >שמירת שינויים</Button></div>
+            <div><Button style={styles.button} onClick={onSaveChanges}>שמירת שינויים</Button></div>
         </div>
     );
 }

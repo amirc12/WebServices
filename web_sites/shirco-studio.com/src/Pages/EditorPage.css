@@ -1,8 +1,26 @@
-.container
+.editor_page
 {
-    padding-top: 20px;
+    margin     : auto;
+    width      : 95%;
+    display    : flex;
+    column-gap : 8px;
+}
+
+.history_card
+{
     display: flex;
-    column-gap: 8px;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    /* border-right: 1px solid gray; */
+}
+
+.cards_container
+{
+    flex        : 6;
+    padding-top : 20px;
+    display     : flex;
+    column-gap  : 8px;
 }
 
 .training_card
@@ -48,13 +66,32 @@
 button
 {
     background: transparent;
-    margin-left: 40px;
+    /* margin-left: 40px; */
     /* float: right; */
 }
 
 @media only screen and (max-width: 900px) 
 {
-    .container
+    .editor_page
+    {
+        margin     : auto;
+        width      : 95%;
+        display    : flex;
+        flex-direction: column;
+        column-gap : 8px;
+    }
+
+    .history_card
+    {
+        padding-top: 5px;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        place-items: center;
+        row-gap: 1px;
+    }
+    
+    .cards_container
     {
         padding: 10px;
         display: flex;
