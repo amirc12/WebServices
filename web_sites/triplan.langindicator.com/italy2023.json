@@ -4,5 +4,39 @@
   "sub_title": "xxx",
   "start_date": "8/14/2023",
   "end_date": "8/22/2023",
-  "days": []
+  "days": [
+    {
+      "number": 1,
+      "date": "15/08/2023",
+      "week_day": "שלישי",
+      "items": [
+        {
+          "number": 1,
+          "type": "attraction",
+          "title": "כותרת",
+          "content": "תוכן",
+          "address": "כתובת",
+          "link": "קישור"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "date": "16/08/2023",
+      "week_day": "רביעי",
+      "items": []
+    },
+    {
+      "number": 3,
+      "date": "17/08/2023",
+      "week_day": "חמישי",
+      "items": []
+    },
+    {
+      "number": 4,
+      "date": "18/08/2023",
+      "week_day": "שישי",
+      "items": []
+    }
+  ]
 }

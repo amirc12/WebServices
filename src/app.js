@@ -8,7 +8,7 @@ const utils      = require('./utils');
 const translator = require("./routes/translate");
 const finance    = require("./routes/finance");
 const studio     = require("./routes/studio");
-// const triplan    = require("./routes/triplan");
+const triplan    = require("./routes/triplan");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,7 +19,7 @@ app.use(express.json());
 app.use("/translate", translator);
 app.use("/finance", finance);
 app.use("/studio", studio);
-// app.use("/plan", triplan);
+app.use("/plan", triplan);
 
 app.post("/", (req, res)=> 
 {
@@ -70,8 +70,11 @@ app.post("/contact", (req, res) =>
 //Workaround to host web sites of of different domains (language-indicator and hamadaf-hakatan)
 app.get(/[a-z]|\//, (req, res) => 
 {
-    //little patch to support editor page of SHIRCO STUDIO
-    const fileName = (req.originalUrl == "/" || req.originalUrl == "/editor") ? "/index.html" : req.originalUrl;
+    //little patch to support direct navigation to editor page of SHIRCO STUDIO and portfolio page of options
+    const fileName = (req.originalUrl == "/"        || 
+                      req.originalUrl == "/editor"  || 
+                      req.originalUrl == "/portfolio") ? "/index.html" : req.originalUrl;
+
     const filePath = utils.getCurrentDomainFilePath(req, fileName);
     return res.sendFile(filePath);
 });

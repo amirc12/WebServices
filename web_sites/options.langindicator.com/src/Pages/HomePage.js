@@ -6,13 +6,12 @@ import StockCard from '../Components/StockCard'
 const SYMBOLS = 
 [
    "AAPL", "AMZN", "AVGO", "CAT", "CM", "CSCO", "EPD", "FRT", "GOOG", "INTC", "KO", "LYB", "META", "MFC", "MMM", 
-   "MMP", "MPLX", "MSFT", "NFG", "NUE", "ORI", "PRU", "STLD", "STOR", "SYY", "VALE", "WPC", "WSBC", "XOM"
+   "MMP", "MPLX", "MRK", "MSFT", "NFG", "NUE", "ORI", "PRU", "STLD", "STOR", "SYY", "VALE", "WPC", "WSBC", "XOM"
 ];
 
 const styles =
 {
-    symbolsList  : {padding: '10px', borderBottom: '1px solid gray'},
-    symbolInput  : {height: '25px', width: '70px', textTransform: 'uppercase'},
+    symbolInput  : {height: '25px', width: '60px', textTransform: 'uppercase'},
     filterInput  : {height: '25px', width: '40px'}
 };
 
@@ -37,7 +36,7 @@ function HomePage()
     const filterButtonText = showFilter ? "Hide Filter" : "Show Filter";
 
     return(
-        <div>
+        <div className='home_page'>
             <div className='filter_bar'>
                 <div style={{alignSelf: 'center'}}>
                     Stock: <InputField style={styles.symbolInput} value={inputSymbol} onChangeHandler={setInputSymbol} />
@@ -51,14 +50,14 @@ function HomePage()
 
             {showFilter &&
                 <div class="filter_form">
-                    
-                    <div>From: <InputField value={fromMonth} onChangeHandler={setFromMonth} /> Months.</div>
-                    <div>To: <InputField value={toMonth} onChangeHandler={setToMonth} /> Months.</div>
+                    <div>From: <InputField value={fromMonth} onChangeHandler={setFromMonth} /> to <InputField value={toMonth} onChangeHandler={setToMonth}/> Months.</div>                    
+                    {/* <div>From: <InputField value={fromMonth} onChangeHandler={setFromMonth} /> Months.</div>
+                    <div>To: <InputField value={toMonth} onChangeHandler={setToMonth} /> Months.</div> */}
                     <div>Max Price Change: <InputField value={maxPriceChange} onChangeHandler={setMaxPriceChange} /> %</div>
                 </div>
             }
 
-            <div style={styles.symbolsList}>
+            <div className='symbols_list'>
                 {symbolsButtons}
             </div>
 

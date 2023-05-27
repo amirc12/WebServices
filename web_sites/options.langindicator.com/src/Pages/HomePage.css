@@ -1,3 +1,8 @@
+.home_page
+{
+    max-width: 100%;
+}
+
 .filter_bar
 {
     display               : grid;
@@ -15,9 +20,15 @@
 {
     /* display               : none; */
     display               : grid;
-    grid-template-columns : 1fr 1fr 2fr 2fr;
+    grid-template-columns : 1fr 2fr;
     padding               : 10px;
     border-bottom         : 1px solid gray;
+}
+
+.symbols_list
+{
+    padding       : 10px;
+    border-bottom : 1px solid gray;
 }
 
 .stock_cards_container
@@ -25,10 +36,41 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 10px;
-    /* max-width: 100%;
-    padding: 5px; */
+    /* max-width: 100%; */
+    /* padding: 5px; */
 }
 
 @media only screen and (max-width: 900px) 
 {
+    .filter_bar
+    {
+        display               : grid;
+        grid-template-columns : 5fr 1fr;
+        column-gap            : 2px;
+        padding               : 10px 1px 10px 1px;
+    }
+
+    .symbols_list
+    {
+        padding       : 5px;
+        border-bottom : 1px solid gray;
+        height        : 80px;
+        overflow      : auto;
+    }
+
+    .stock_cards_container
+    {
+        display        : flex;
+        flex-direction : column;
+        row-gap        : 5px;
+    }
+
+    .filter_form
+    {
+        display        : flex;
+        flex-direction : column;
+        row-gap        : 5px;
+        padding        : 10px;
+        border-bottom  : 1px solid gray;
+    }
 }

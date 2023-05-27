@@ -1,40 +1,26 @@
 .page_header
 {
-    background-color: rgb(37, 98, 183);
-}
-
-.page_content
-{
-    width  : 80%;
-    margin : auto;
+    background-color: rgb(8, 75, 130);
 }
 
 header 
 {
     display          : flex;
     align-items      : center;
-    background-color : rgb(37, 98, 183);
+    background-color : rgb(8, 75, 130);
     color            : white;
-    padding          : 15px;
+    padding          : 1px;
     margin           : auto;
-    width            : 80%;
+    width            : 90%;
 }
 
 .logo 
 {
-    flex             : 2;
+    flex             : 3;
     align-items      : center;
     color            : white;
     font-size        : 38px;
     padding          : 10px 30px;
-}
-
-.logo_subtitle
-{
-    font-size   : 16px;
-    margin-left : 20px;
-    margin-top  : 5px;
-    color       : #eec75e;
 }
 
 .topnav 
@@ -47,24 +33,27 @@ header
     font-size       : 18px;
 }
 
-.topnav a 
+.topnav a
 {
-  color: White;
-  text-align: center;
-  padding: 6px 16px;
-  text-decoration: none;
+    color           : White;
+    text-align      : center;
+    padding         : 6px 16px;
+    text-decoration : none;
 }
 
 .topnav a:hover 
 {
-  color: #eec75e;
+  /* color: #eec75e; */
+  color            : rgb(249, 182, 94);
   cursor: pointer;
 }
 
 .topnav a.active 
 {
-  color: #eec75e;
-  border-bottom: 2px solid #eec75e;
+    color            : rgb(249, 182, 94);
+    border-bottom: 2px solid rgb(249, 182, 94);
+    /* color: #eec75e;
+     border-bottom: 2px solid #eec75e; */
 }
 
 .topnav div.no_active 
@@ -123,7 +112,7 @@ button
     background-color : white;
     border           : none;
     color            : blue;
-    padding          : 5px;
+    /* padding          : 5px; */
     text-align       : center;
     text-decoration  : none;
     font-family      : Verdana, Arial, sans-serif;
@@ -159,7 +148,7 @@ button:hover
 {
     background-color : rgb(85, 82, 82);
     color            : white;
-    text-decoration  : underline;
+    text-decoration: underline;
 }
 
 @media only screen and (max-width: 900px) 
@@ -186,21 +175,5 @@ button:hover
     {
         padding         : 1px 1px;
         text-decoration : none;
-    }
-
-    .page_content
-    {
-        width  : 95%;
-        margin : auto;
-    }
-    
-    .action_button
-    {
-        /* padding          : 5px; */
-        font-size        : 14px;
-        /* margin           : 4px 2px; */
-        cursor           : pointer;
-        font-weight      : 400;
-        /* min-width        : 60px; */
     }
 }

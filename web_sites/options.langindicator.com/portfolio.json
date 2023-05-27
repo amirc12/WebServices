@@ -1,0 +1,138 @@
+[
+    {
+        "date"           : "2022-09-19",
+        "symbol"         : "CAT",
+        "price"          : 182.73,
+        "shares"         : 100,
+        "strike"         : 190,
+        "premium"        : 18.2,
+        "dividend"       : 2.4,
+        "exp_date"       : "2023-06-16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022-09-20",
+        "symbol"         : "KO",
+        "price"          : 59.53,
+        "shares"         : 100,
+        "strike"         : 62.5,
+        "premium"        : 3.35,
+        "dividend"       : 0.88,
+        "exp_date"       : "2023-06-16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022-10-19",
+        "symbol"         : "CSCO",
+        "price"          : 41.78,
+        "shares"         : 200,
+        "strike"         : 45,
+        "premium"        : 2.94,
+        "dividend"       : 0.76,
+        "exp_date"       : "2023-06-16",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2022-11-29",
+        "symbol"         : "MCHP",
+        "price"          : 74.57,
+        "shares"         : 100,
+        "strike"         : 80,
+        "premium"        : 7.5,
+        "dividend"       : 0.66,
+        "exp_date"       : "2023-07-21",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023-03-13",
+        "symbol"         : "STLD",
+        "price"          : 117.31,
+        "shares"         : 100,
+        "strike"         : 135,
+        "premium"        : 11.8,
+        "dividend"       : 1.27,
+        "exp_date"       : "2024-01-19",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023-03-14",
+        "symbol"         : "CSCO",
+        "price"          : 48.81,
+        "shares"         : 100,
+        "strike"         : 52.5,
+        "premium"        : 2.9,
+        "dividend"       : 1.17,
+        "exp_date"       : "2024-01-19",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023-03-14",
+        "symbol"         : "LYB",
+        "price"          : 88.64,
+        "shares"         : 100,
+        "strike"         : 94.8,
+        "premium"        : 6.8,
+        "dividend"       : 3.57,
+        "exp_date"       : "2024-01-19",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023-03-21",
+        "symbol"         : "VLO",
+        "price"          : 130.97,
+        "shares"         : 100,
+        "strike"         : 145,
+        "premium"        : 13.5,
+        "dividend"       : 3.06,
+        "exp_date"       : "2024-01-19",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023-05-08",
+        "symbol"         : "XOM",
+        "origin_price"   : 93.38,
+        "price"          : 110.11,
+        "shares"         : 100,
+        "strike"         : 115,
+        "premium"        : 8.55,
+        "dividend"       : 1.82,
+        "exp_date"       : "2024-01-19",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023-05-08",
+        "symbol"         : "MRK",
+        "origin_price"   : 86.02,
+        "price"          : 118.01,
+        "shares"         : 100,
+        "strike"         : 125,
+        "premium"        : 6.5,
+        "dividend"       : 1.46,
+        "exp_date"       : "2024-01-19",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023-05-08",
+        "symbol"         : "MSFT",
+        "origin_price"   : 231.78,
+        "price"          : 307.5,
+        "shares"         : 100,
+        "strike"         : 325,
+        "premium"        : 23,
+        "dividend"       : 1.36,
+        "exp_date"       : "2024-01-19",
+        "options_amount" : 1
+    },
+    {
+        "date"           : "2023-05-08",
+        "symbol"         : "AAPL",
+        "origin_price"   : 142.68,
+        "price"          : 173.5,
+        "shares"         : 100,
+        "strike"         : 180,
+        "premium"        : 14.1,
+        "dividend"       : 0.48,
+        "exp_date"       : "2024-01-19",
+        "options_amount" : 1
+    }
+]

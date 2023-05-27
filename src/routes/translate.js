@@ -1,3 +1,5 @@
+const utils = require('../utils');
+const moment = require("moment");
 
 const fs = require("fs");
 
@@ -181,6 +183,80 @@ router.get("/", function (req, response, next)
 
     response.append("Access-Control-Allow-Origin", "*");
     response.send({a:1, b:2});
+});
+
+function saveWordsToFile(req, words)
+{
+    const filePath = utils.getCurrentDomainFilePath(req, "my_words.json");
+
+    let wordsStr = JSON.stringify(words, null, 2);
+    try
+    {
+        fs.writeFile(filePath, wordsStr, function (err) 
+        {
+            if (err) throw err;
+            console.log('Words saved');
+            // response.append("Access-Control-Allow-Origin", "*");
+            // response.send({status: 'ok'});    
+        });
+    }
+    catch(e)
+    {
+        console.error(e);
+        debugger;
+    }
+}
+
+function loadWordsFromFile(req)
+{
+    const filePath = utils.getCurrentDomainFilePath(req, "my_words.json");
+    const jsonStr = fs.readFileSync(filePath);
+    const words = JSON.parse(jsonStr);
+    return words;
+}
+
+router.get("/my_words", function (req, response, next) 
+{
+    const name = req.query.q;
+
+    const myWords = loadWordsFromFile(req);
+
+    myWords.sort((a, b) =>
+    {
+        const am = moment(a.date, 'DD/MM/YYYY');
+        const bm = moment(b.date, 'DD/MM/YYYY');
+        const ret = am.isBefore(bm) ? 1 : -1;
+        return ret;
+    });
+
+    response.append("Access-Control-Allow-Origin", "*");
+    response.send(myWords);
+});
+
+router.post("/add_series", function (req, response, next) 
+{
+    const myWords = loadWordsFromFile(req);
+    const body = JSON.parse(req.body);
+
+    let index = myWords.findIndex((item) => item.date === body.date);
+    if(index >= 0)
+    {
+        const dayWords = myWords[index];
+        dayWords.series.push(body.words);
+    }
+    else
+    {
+        const newDay = {date: body.date, series: [body.words]};
+        myWords.push(newDay);
+    }
+
+    // index = plan.days.findIndex(item => item.header === body.day.header);
+    // plan.days.splice(index, 1, body.day);    
+
+    saveWordsToFile(req, myWords);
+
+    response.append("Access-Control-Allow-Origin", "*");
+    response.send({result: 'ok'});
 });
 
 module.exports = router;

@@ -1,0 +1,9 @@
+.edit_page
+{
+    margin     : auto;
+    width      : 95%;
+}
+
+@media only screen and (max-width: 900px) 
+{
+}

@@ -36,30 +36,6 @@ async function fetchPortfolioStatusData()
     return trades;
 }
 
-function TradeStatusRow({trade})
-{
-    return(
-        <tr>
-            <td>{trade.date}</td>
-            <td>{trade.symbol}</td>
-            <td>{trade.price}$</td>
-            <td>{trade.strike}$</td>
-            <td>{trade.strikeChange}%</td>
-            <td>{trade.premium}$</td>
-            <td>{trade.premiumChange}%</td>
-            <td>{trade.dividend}$</td>
-            <td>{trade.otm}%</td>
-            <td>{trade.itm}%</td>
-            <td>{trade.expDate}</td>
-            <td>{trade.stockPrice}</td>
-            <td>{trade.stockPriceChange}</td>
-            <td>{trade.optionPrice}</td>
-            <td>{trade.optionPriceType}</td>
-            <td>{trade.currentRev}</td>
-        </tr>
-    );
-}
-
 function TradeStatusHeader()
 {
     return(
@@ -84,6 +60,30 @@ function TradeStatusHeader()
     );
 }
 
+function TradeStatusRow({trade})
+{
+    return(
+        <tr>
+            <td>{trade.date}</td>
+            <td>{trade.symbol}</td>
+            <td>{trade.price}$</td>
+            <td>{trade.strike}$</td>
+            <td>{trade.strikeChange}%</td>
+            <td>{trade.premium}$</td>
+            <td>{trade.premiumChange}%</td>
+            <td>{trade.dividend}$</td>
+            <td>{trade.otm}%</td>
+            <td>{trade.itm}%</td>
+            <td>{trade.expDate}</td>
+            <td>{trade.stockPrice}</td>
+            <td>{trade.stockPriceChange}%</td>
+            <td>{trade.optionPrice}</td>
+            <td>{trade.optionPriceType}</td>
+            <td>{trade.currentRev}%</td>
+        </tr>
+    );
+}
+
 function PortfolioStatusCard()
 {
     const [portfolioTrades, setPortfolioTrades] = useState([]);
@@ -104,7 +104,7 @@ function PortfolioStatusCard()
         <div>
             {(portfolioTrades.length === 0)
             ?   <div>Loading...</div>
-            :   <div style={{marginTop: '10px', marginBottom: '20px'}}>
+            :   <div style={{marginTop: '10px', marginBottom: '20px', overflow: 'auto'}}>
                     <table>
                         <TradeStatusHeader />
                         {tradeStatusRows}

@@ -83,7 +83,7 @@ function ContractCard({date, stockInfo, maxPriceChange})
         setContractStrikes(strikes);
     }
 
-    const strikeRows = contractStrikes.map((strike) => <tr><td>{strike.strike}</td><td>{strike.priceChange}%</td><td>{strike.premiumStr}</td><td>{strike.otm}</td><td>{strike.itm}</td></tr>);
+    const strikeRows = contractStrikes.map((strike) => <tr><td>{strike.strike}</td><td>{strike.priceChange}%</td><td>{strike.premiumStr}</td><td>{strike.otm}%</td><td>{strike.itm}%</td></tr>);
 
     return(
         <div>

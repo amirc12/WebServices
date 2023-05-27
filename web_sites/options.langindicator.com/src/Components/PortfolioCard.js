@@ -19,10 +19,11 @@ async function fetchPortfolioData()
     return trades;
 }
 
-function TradeRow({trade})
+function TradeRow({trade, index})
 {
+    const bgColor = (index % 2) ? 'rgb(245, 245, 245)' : 'white';
     return(
-        <tr>
+        <tr style={{backgroundColor: bgColor}}>
             <td>{trade.date}</td>
             <td>{trade.symbol}</td>
             <td>{trade.price}$</td>
@@ -80,13 +81,13 @@ function PortfolioCard({onPortfolioLoad})
         fetchData();
     }, []);
 
-    const tradeRows = portfolioTrades.map(trade => <TradeRow trade={trade}/>);
+    const tradeRows = portfolioTrades.map((trade, index) => <TradeRow trade={trade} index={index}/>);
 
     return(
         <div style={{marginBottom: '25px'}}>
             {(portfolioTrades.length === 0)
             ?   <div>Loading...</div>
-            :   <div style={{marginTop: '15px'}}>
+            :   <div style={{marginTop: '15px', overflow: 'auto'}}>
                     <table>
                         <TradeHeader />
                         {tradeRows}

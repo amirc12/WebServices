@@ -1,47 +1,38 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import HomePage from './Pages/HomePage'
-import PortfolioPage from './Pages/PortfolioPage'
+import EditPage from './Pages/EditPage'
 
-function PageHeader()
+function PageHeader({currentPage, onShowHistory})
 {
     return(
         <div className='page_header'>
             <header>        
                 <div className="logo">
-                    <div>Options Investment</div>
+                    <div>My Words</div>
                 </div>
                 <div className="topnav">
                     <div><NavLink to="/">Home</NavLink ></div>
-                    <div><NavLink to="/portfolio">Portfolio</NavLink ></div>
+                    <div><NavLink to="/editor">Add Words</NavLink ></div>
                 </div>
             </header>
         </div>
     );
 }
 
-function PageContent()
-{
-    return(
-        <div className='page_content'>
-            <Routes>
-                <Route path="/"          element={<HomePage/>} />
-                <Route path="/portfolio" element={<PortfolioPage/>} />
-            </Routes>
-        </div>
-    );
-}
-
 function App() 
 {
-    return(
-        <div>
+    return (
+        <div className="App">
             <BrowserRouter>
                 <PageHeader/>
-                <PageContent />
+                <Routes>
+                    <Route path="/"       element={<HomePage/>} />
+                    <Route path="/editor" element={<EditPage/>} />
+                </Routes>
             </BrowserRouter>
         </div>
-    );    
+      );    
 }
 
 export default App;
