@@ -2,6 +2,12 @@
 {
     margin     : auto;
     width      : 95%;
+    padding-top: 7px;
+}
+
+.edit_card
+{
+    margin-top: 10px;;
 }
 
 @media only screen and (max-width: 900px) 

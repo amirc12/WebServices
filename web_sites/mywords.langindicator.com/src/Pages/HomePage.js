@@ -1,27 +1,18 @@
 import './HomePage.css';
-
 import { useState, useEffect } from 'react';
+import utils from '../utils';
 
-const constants = require("../constants");
+const moment = require("moment");
 
-const colors = ['#014361', '#375b39', '#824d4c', '#663c00'];
+const colors   = ['#014361', '#375b39', '#824d4c', '#663c00'];
 const bgColors = ['#e5f6fd', '#edf7ed', '#fdeded', '#fff4e5'];
-
-async function fetchMyWordsData()
-{
-    const url      = `${constants.API_URL}/my_words?q=amir`;
-    const response = await fetch (url, constants.FETCH_OPTIONS);
-    const myWords     = await response.json();
-
-    return myWords;
-}
 
 function WordSeries({index, data})
 {
-    const words = data.map(item => <div className='single_word'>{item}</div>);
+    const words = data.map((item) => item.length ? <div className='single_word'>{item}</div> : '');
 
     return(
-        <div className='word_series' style={{backgroundColor: bgColors[index % 3], color: colors[index % 3]}}>
+        <div className='word_series' style={{backgroundColor: bgColors[index % 4], color: colors[index % 4]}}>
             {words}
         </div>
     );
@@ -29,7 +20,17 @@ function WordSeries({index, data})
 
 function DayCard({data})
 {
-    const series = data.series.map((item, index) => <WordSeries index={index} data={item}/>);
+    const series = data.series.map((item, index) => 
+    {
+        let isEmpty = true;
+        for(const word of item)
+        {
+            if(word.length > 0)
+                isEmpty = false;
+        }
+
+        return !isEmpty ? <WordSeries index={index} data={item}/> : '';
+    });
 
     return(
         <div className='day_card'>
@@ -47,13 +48,15 @@ function HomePage()
     {
         async function fetchData() 
         {
-            const myWords = await fetchMyWordsData();
+            const myWords = await utils.fetchMyWordsData();
             setMyWords(myWords);
         }
         fetchData();
     }, []);
 
-    const dayCards = myWords.map(item => <DayCard data={item}/>);
+    const tomorrow = moment().add(1, 'day').format('DD/MM/YYYY');
+
+    const dayCards = myWords.map(item => (item.date != tomorrow) ? <DayCard data={item}/> : '');
 
     return(
         <div className='home_page'>

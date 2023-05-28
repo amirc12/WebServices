@@ -1,17 +1,18 @@
-.App 
+.page_header
 {
-  /* text-align: center; */
+    background-color: rgb(8, 75, 130);
 }
 
 header 
 {
     display          : flex;
     align-items      : center;
-    background-color : rgb(37, 98, 183);
-    /* background-color : rgb(241, 147, 25); */
+    background-color : rgb(8, 75, 130);
     color            : white;
-    padding          : 15px;
-    direction: ltr;
+    padding          : 1px;
+    margin           : auto;
+    width            : 90%;
+    direction        : ltr;
 }
 
 .logo 

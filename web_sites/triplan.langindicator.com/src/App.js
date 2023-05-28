@@ -7,15 +7,17 @@ import EditorPage from './Pages/EditorPage'
 function PageHeader()
 {
     return(
-        <header>        
-            <div className="logo">
-                <div>TRIP PLANNER</div>
-            </div>
-            <div className="topnav">
-                <div><NavLink to="/">בית</NavLink ></div>
-                <div><NavLink to="/editor">עריכה</NavLink ></div>
-            </div>
-        </header>
+        <div className='page_header'>
+            <header>        
+                <div className="logo">
+                    <div>TRIP PLANNER</div>
+                </div>
+                <div className="topnav">
+                    <div><NavLink to="/">Home</NavLink ></div>
+                    <div><NavLink to="/editor">Editor</NavLink ></div>
+                </div>
+            </header>
+        </div>
     );
 }
 

@@ -233,7 +233,7 @@ router.get("/my_words", function (req, response, next)
     response.send(myWords);
 });
 
-router.post("/add_series", function (req, response, next) 
+router.post("/update_series", function (req, response, next) 
 {
     const myWords = loadWordsFromFile(req);
     const body = JSON.parse(req.body);
@@ -242,16 +242,13 @@ router.post("/add_series", function (req, response, next)
     if(index >= 0)
     {
         const dayWords = myWords[index];
-        dayWords.series.push(body.words);
+        dayWords.series = body.series;
     }
     else
     {
-        const newDay = {date: body.date, series: [body.words]};
+        const newDay = {date: body.date, series: body.series};
         myWords.push(newDay);
     }
-
-    // index = plan.days.findIndex(item => item.header === body.day.header);
-    // plan.days.splice(index, 1, body.day);    
 
     saveWordsToFile(req, myWords);
 

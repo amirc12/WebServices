@@ -12,11 +12,8 @@ body
     /* letter-spacing   : 1px; */
     line-height      : 1.5;
     color            : #5A5A64;
-    /* background-color : #F4F4F4; */
     padding          : 0px;
     margin           : 0px auto;
-    width            : 90%;
-    /* max-width        : 1400px; */
 }
 
 code 
