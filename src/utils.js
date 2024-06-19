@@ -11,3 +11,11 @@ utils.getCurrentDomainFilePath = function (req, fileName)
 
     return filePath;
 }
+
+utils.getCurrentDomainDir = function (req)
+{
+    let webSitesDir = __dirname.replace("src", "web_sites");
+    webSitesDir = path.join(webSitesDir + "/" + req.hostname.replace('www.', ''));
+
+    return webSitesDir;
+}

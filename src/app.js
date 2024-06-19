@@ -4,6 +4,7 @@ const express = require("express");
 
 const fs         = require("fs");
 const bodyParser = require('body-parser');
+const moment     = require("moment");
 const utils      = require('./utils');
 const translator = require("./routes/translate");
 const finance    = require("./routes/finance");
@@ -36,8 +37,15 @@ app.post("/contact", (req, res) =>
     console.log('/contact request');
     const filePath = utils.getCurrentDomainFilePath(req, "contact_data.json");
     const contactData = require(filePath);
-    contactData.push(JSON.parse(req.body));
 
+    let newMsg = JSON.parse(req.body);
+    const currentDate = moment().format('YYYY-MM-DD');
+    // newMsg.date = currentDate;
+    newMsg = {date: currentDate, ...newMsg};
+
+    // contactData.push(JSON.parse(req.body));
+    contactData.push(newMsg);
+``
     try
     {
         let data = JSON.stringify(contactData, null, 2);
@@ -71,12 +79,23 @@ app.post("/contact", (req, res) =>
 app.get(/[a-z]|\//, (req, res) => 
 {
     //little patch to support direct navigation to editor page of SHIRCO STUDIO and portfolio page of options
-    const fileName = (req.originalUrl == "/"        || 
+    let fileName = (req.originalUrl == "/"        || 
                       req.originalUrl == "/editor"  || 
                       req.originalUrl == "/portfolio") ? "/index.html" : req.originalUrl;
 
     const filePath = utils.getCurrentDomainFilePath(req, fileName);
-    return res.sendFile(filePath);
+    
+    return res.sendFile(filePath, (err) =>
+    {
+        if(err && err.code == 'ENOENT')
+        {
+            res.status(404).send('Custom 404 Error: File Not Found');                        
+        }
+    });
+
+    // const domainDir = utils.getCurrentDomainDir(req);    
+    // const options = {root: domainDir};
+    // return res.sendFile(fileName, options);
 });
 
 
