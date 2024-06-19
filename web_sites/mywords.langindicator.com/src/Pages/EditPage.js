@@ -12,8 +12,9 @@ const styles =
 {
     textFieldTomorrow : {backgroundColor: '#e5f6fd', width: '100%', marginTop: '5px'},
     buttonTomorrow    : {backgroundColor: '#014361', width: '100%', marginTop: '10px', marginBottom: '20px'},
-    textFieldToday : {backgroundColor: '#edf7ed', width: '100%', marginTop: '5px'},
-    buttonToday    : {backgroundColor: '#375b39', width: '100%', marginTop: '10px', marginBottom: '20px'}
+    textFieldToday    : {backgroundColor: '#edf7ed', width: '100%', marginTop: '5px'},
+    buttonToday       : {backgroundColor: '#375b39', width: '100%', marginTop: '10px', marginBottom: '20px'},
+    buttonDisabled    : {color: 'gray', backgroundColor: 'lightgray', width: '100%', marginTop: '10px', marginBottom: '20px'}
 };
 
 async function postWords(postData)
@@ -50,41 +51,47 @@ function getWordsArrayFromString(str)
 
 function EditCard({date, series, title})
 {
-    const [series0, setSeries0] = useState(series[0]);
-    const [series1, setSeries1] = useState(series[1]);
-    const [series2, setSeries2] = useState(series[2]);
-    const [series3, setSeries3] = useState(series[3]);
+    const [wordSeries, setWordSeries] = useState({'0':'', '1':'', '2':'', '3':''});
+    const [isDataChanged, setIsDataChanged] = useState(false);
  
     useEffect(() => 
     {
-        setSeries0(series[0]);
-        setSeries1(series[1]);
-        setSeries2(series[2]);
-        setSeries3(series[3]);
+        setWordSeries({'0': series[0], '1': series[1], '2': series[2], '3': series[3]});
     }, [series]);
     
     function onClickSave()
     {
         let postData = {date: date, series: []};
 
-        postData.series.push(getWordsArrayFromString(series0));
-        postData.series.push(getWordsArrayFromString(series1));
-        postData.series.push(getWordsArrayFromString(series2));
-        postData.series.push(getWordsArrayFromString(series3));
+        postData.series.push(getWordsArrayFromString(wordSeries['0']));
+        postData.series.push(getWordsArrayFromString(wordSeries['1']));
+        postData.series.push(getWordsArrayFromString(wordSeries['2']));
+        postData.series.push(getWordsArrayFromString(wordSeries['3']));
 
         postWords(postData);
+        setIsDataChanged(false);
+    }
+
+    function handleDataChange(e, key)
+    {
+        let newWords = {...wordSeries};
+        newWords[key] = e.target.value;
+        setWordSeries(newWords);
+        setIsDataChanged(true);
     }
 
     const textStyle   = (title === 'Today') ? styles.textFieldToday : styles.textFieldTomorrow;
-    const buttonStyle = (title === 'Today') ? styles.buttonToday : styles.buttonTomorrow;
+
+    const buttonStyle = (!isDataChanged)    ? styles.buttonDisabled : 
+                        (title === 'Today') ? styles.buttonToday    : styles.buttonTomorrow;
 
     return(
         <div className='edit_card'>
-            <TextField style={textStyle} size='small' value={series0} onChange={(e) => setSeries0(e.target.value)}/>
-            <TextField style={textStyle} size='small' value={series1} onChange={(e) => setSeries1(e.target.value)}/>
-            <TextField style={textStyle} size='small' value={series2} onChange={(e) => setSeries2(e.target.value)}/>
-            <TextField style={textStyle} size='small' value={series3} onChange={(e) => setSeries3(e.target.value)}/>
-            <Button style={buttonStyle} variant="contained" onClick={onClickSave}>Save for {title} ({date})</Button>
+            <TextField style={textStyle} size='small' value={wordSeries['0']} onChange={(e) => handleDataChange(e, '0')}/>
+            <TextField style={textStyle} size='small' value={wordSeries['1']} onChange={(e) => handleDataChange(e, '1')}/>
+            <TextField style={textStyle} size='small' value={wordSeries['2']} onChange={(e) => handleDataChange(e, '2')}/>
+            <TextField style={textStyle} size='small' value={wordSeries['3']} onChange={(e) => handleDataChange(e, '3')}/>
+            <Button disabled={isDataChanged ? false : true} style={buttonStyle} variant="contained" onClick={onClickSave}>Save for {title} ({date})</Button>
         </div>
     );
 }

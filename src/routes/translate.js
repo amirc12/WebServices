@@ -6,6 +6,8 @@ const fs = require("fs");
 const googleKeyPath = require('path').format({ dir: process.cwd(), base: process.env.GOOGLE_KEY });
 const dictionaryPath = require('path').format({ dir: process.cwd(), base: process.env.DICTIONARY });
 
+console.log(dictionaryPath);
+
 const dictionary = require(dictionaryPath);
 // const dictionary = require(process.env.DICTIONARY);
 
@@ -185,17 +187,17 @@ router.get("/", function (req, response, next)
     response.send({a:1, b:2});
 });
 
-function saveWordsToFile(req, words)
+function saveDataToFile(req, data, fileName)
 {
-    const filePath = utils.getCurrentDomainFilePath(req, "my_words.json");
+    const filePath = utils.getCurrentDomainFilePath(req, fileName);
 
-    let wordsStr = JSON.stringify(words, null, 2);
+    let dataStr = JSON.stringify(data, null, 2);
     try
     {
-        fs.writeFile(filePath, wordsStr, function (err) 
+        fs.writeFile(filePath, dataStr, function (err) 
         {
             if (err) throw err;
-            console.log('Words saved');
+            console.log('Words Data Saved');
             // response.append("Access-Control-Allow-Origin", "*");
             // response.send({status: 'ok'});    
         });
@@ -207,9 +209,9 @@ function saveWordsToFile(req, words)
     }
 }
 
-function loadWordsFromFile(req)
+function loadDataFromFile(req, fileName)
 {
-    const filePath = utils.getCurrentDomainFilePath(req, "my_words.json");
+    const filePath = utils.getCurrentDomainFilePath(req, fileName);
     const jsonStr = fs.readFileSync(filePath);
     const words = JSON.parse(jsonStr);
     return words;
@@ -219,7 +221,7 @@ router.get("/my_words", function (req, response, next)
 {
     const name = req.query.q;
 
-    const myWords = loadWordsFromFile(req);
+    const myWords = loadDataFromFile(req, "my_words.json");
 
     myWords.sort((a, b) =>
     {
@@ -233,9 +235,19 @@ router.get("/my_words", function (req, response, next)
     response.send(myWords);
 });
 
+router.get("/details_words", function (req, response, next) 
+{
+    const name = req.query.q;
+
+    const detailsWords = loadDataFromFile(req, "details_words.json");
+
+    response.append("Access-Control-Allow-Origin", "*");
+    response.send(detailsWords);
+});
+
 router.post("/update_series", function (req, response, next) 
 {
-    const myWords = loadWordsFromFile(req);
+    const myWords = loadDataFromFile(req, "my_words.json");
     const body = JSON.parse(req.body);
 
     let index = myWords.findIndex((item) => item.date === body.date);
@@ -250,7 +262,20 @@ router.post("/update_series", function (req, response, next)
         myWords.push(newDay);
     }
 
-    saveWordsToFile(req, myWords);
+    saveDataToFile(req, myWords, "my_words.json");
+
+    response.append("Access-Control-Allow-Origin", "*");
+    response.send({result: 'ok'});
+});
+
+router.post("/new_details", function (req, response, next) 
+{
+    const body = JSON.parse(req.body);
+
+    let myWords = loadDataFromFile(req, "details_words.json");
+    myWords.push(body);
+
+    saveDataToFile(req, myWords, "details_words.json");
 
     response.append("Access-Control-Allow-Origin", "*");
     response.send({result: 'ok'});

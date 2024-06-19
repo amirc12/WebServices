@@ -84,7 +84,7 @@ router.get("/week_plan", function (req, response, next)
     {
         dates.unshift(req.query.date);
         plan = {date: req.query.date, days: []}
-        const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+        const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         for(const day of weekdays)
         {
             plan.days.push({header: day, name: '', details: '', warm_up: ''});

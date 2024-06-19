@@ -22,7 +22,7 @@ header
 
 .logo 
 {
-    flex             : 2;
+    flex             : 3;
     align-items      : center;
     color            : white;
     font-size        : 38px;
@@ -39,7 +39,7 @@ header
 
 .topnav 
 {
-    flex            : 1;
+    flex            : 2;
     display         : flex;
     justify-content : center;
     overflow        : hidden;
@@ -85,37 +85,99 @@ table
 
 th
 {
-    border-collapse: collapse;
-    border:1px solid gray;
-    padding-left: 3px;
-    padding-right: 3px;
-    background-color: lightgray;
-    color: black;
-    font-size: 15px;
-    font-weight: normal;
+    border-collapse  : collapse;
+    border           : 1px solid gray;
+    padding-left     : 3px;
+    padding-right    : 3px;
+    background-color : lightgray;
+    color            : black;
+    font-size        : 15px;
+    font-weight      : normal;
 }
 
 .th_green
 {
-    border-collapse: collapse;
-    border:1px solid gray;
-    padding-left: 3px;
-    padding-right: 3px;
-    background-color: rgb(138, 214, 25);
-    color: black;
-    font-size: 15px;
-    font-weight: normal;
+    border-collapse  : collapse;
+    border           : 1px solid gray;
+    padding-left     : 3px;
+    padding-right    : 3px;
+    /* background-color : rgb(138, 214, 25);
+    color            : black; */
+    background-color : black;
+    color            : white;
+    font-size        : 15px;
+    font-weight      : normal;
 }
 
 td 
 {
-    border-collapse: collapse;
-    border:1px solid gray;
-    padding: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-size: 14px;
-    color: black;
+    border-collapse : collapse;
+    border          : 1px solid gray;
+    padding         : 3px;
+    padding-left    : 10px;
+    padding-right   : 10px;
+    font-size       : 14px;
+    color           : black;
+}
+
+.td_bold 
+{
+    border-collapse : collapse;
+    border          : 1px solid gray;
+    padding         : 3px;
+    padding-left    : 10px;
+    padding-right   : 10px;
+    font-size       : 14px;
+    font-weight     : bold;
+    color           : black;
+}
+
+.td_blue 
+{
+    border-collapse : collapse;
+    border          : 1px solid gray;
+    padding         : 3px;
+    padding-left    : 10px;
+    padding-right   : 10px;
+    font-size       : 14px;
+    color           : black;
+    background-color : rgb(148, 198, 235);
+}
+
+.td_red
+{
+    border-collapse : collapse;
+    border          : 1px solid gray;
+    padding         : 3px;
+    padding-left    : 10px;
+    padding-right   : 10px;
+    font-size       : 14px;
+    color           : black;
+    background-color : coral;
+}
+
+.td_green 
+{
+    border-collapse : collapse;
+    border          : 1px solid gray;
+    padding         : 3px;
+    padding-left    : 10px;
+    padding-right   : 10px;
+    font-size       : 14px;
+    color           : black;
+    background-color : rgb(138, 214, 25);
+}
+
+.history_tr_green 
+{
+    color            : black;
+    background-color : rgb(138, 214, 25);
+}
+
+.history_tr_red 
+{
+    color            : black;
+    background-color : coral;
 }
 
 button 

@@ -102,10 +102,17 @@ async function fillOptionsPriceYH_V3(portfolioData)
     {
         if(optionsData[i])
         {
-            const quote = optionsData[i].optionChain.result[0].quote;
-            const price = quote.ask ? quote.ask : quote.regularMarketPrice;
+            let priceType = 'ask';
+            let price = 0;
+            if(optionsData[i].optionChain.result.length > 0)
+            {
+                const quote = optionsData[i].optionChain.result[0].quote;
+                price = quote.ask ? quote.ask : quote.regularMarketPrice;                    
+                priceType = quote.ask ? 'ask' : 'last price';
+            }
+
             portfolioData[i]["current_call_price"] = price;                
-            portfolioData[i]["call_price_type"] = quote.ask ? 'ask' : 'last price';
+            portfolioData[i]["call_price_type"] = priceType;
         }
     }
 }
@@ -137,9 +144,6 @@ async function getPortfolioStatus(req, res)
     return portfolioData;
 }
 
-// CAT230616C00190000
-// XOM230616C00097500
-
 router.get("/portfolio-status", function (req, response, next) 
 {
     getPortfolioStatus(req, response)
@@ -157,15 +161,138 @@ router.get("/portfolio-status", function (req, response, next)
     }); 
 });
 
-router.get("/stock-info", function (req, response, next) 
+async function getChartData(req, res)
+{
+    let url   = `${YH_FINANCE_URL_V3}/get-chart?symbol=NUE&region=US&interval=1d&range=2y`;
+    let response = await fetch (url, OPTIONS);
+    let json     = await response.json();
+
+    let prices = [];
+    const size = json.chart.result[0].timestamp.length;
+    for(let i = 2; i < size; i++) //intentionaly skip the first 2 items
+    {
+        const open  = json.chart.result[0].indicators.quote[0].open[i];
+        const close = json.chart.result[0].indicators.quote[0].close[i];
+        const yesterdayClose = json.chart.result[0].indicators.quote[0].close[i-1];
+        
+        const change = close - yesterdayClose;
+        const percentChange = change / yesterdayClose;
+        const yesterdayChange = yesterdayClose - json.chart.result[0].indicators.quote[0].close[i-2];
+
+        const rev = (yesterdayChange == 0 || change == 0) ? 0 :
+                    (yesterdayChange * change > 0)        ? 100000 * Math.abs(percentChange) : -100000 * Math.abs(percentChange);
+
+        const date = json.chart.result[0].timestamp[i];
+
+        const item = 
+        {
+            date: date,
+            dateStr: new Date(date * 1000).toLocaleDateString(),
+            open: open.toFixed(2),
+            close: close.toFixed(2),
+            change: change.toFixed(2),
+            percentChange: percentChange.toFixed(4),
+            revenue: rev.toFixed(2)
+        };
+
+        prices.push(item);
+    }
+
+    return prices;
+}
+
+async function getHistoricalData(req, res)
+{
+    // let url   = `${YH_FINANCE_URL_V3}/get-historical-data?symbol=SPY&region=US&start=2019-01-01&end=2019-02-02`;
+    let url   = `${YH_FINANCE_URL_V3}/get-historical-data?symbol=SPY&region=US`;
+    let response = await fetch (url, OPTIONS);
+    let json     = await response.json();
+
+    let yesterdayClose  = 0;
+    let yesterdayChange = 0;
+
+    const prices = json.prices.reverse().map((price) => 
+    {
+        if(price.type == "DIVIDEND") return {type: "DIVIDEND"};
+
+        const change = yesterdayClose > 0 ? price.close - yesterdayClose : 0;
+        const percentChange = yesterdayClose > 0 ? (change / yesterdayClose) : 0;
+
+        const rev = (yesterdayChange == 0 || change == 0) ? 0 :
+                    (yesterdayChange * change > 0)        ? 100000 * Math.abs(percentChange) : -100000 * Math.abs(percentChange);
+
+        const ret = 
+        {
+            date: price.date,
+            dateStr: new Date(price.date * 1000).toLocaleDateString(),
+            open: price.open.toFixed(2),
+            close: price.close.toFixed(2),
+            change: change.toFixed(2),
+            percentChange: percentChange.toFixed(4),
+            revenue: rev.toFixed(2)
+        }
+
+        yesterdayClose  = price.close;
+        yesterdayChange = change;
+
+        return ret;
+    });
+
+    const pricesNoDiv = prices.filter((price) => price.type != "DIVIDEND");
+
+    return pricesNoDiv;
+}
+
+router.get("/history", function (req, response, next) 
+{
+    // getHistoricalData(req, response)
+    getChartData(req, response)
+    .then((prices) => 
+    {
+        response.append("Access-Control-Allow-Origin", "*");
+        response.send(prices);
+    })
+    .catch((e) => 
+    {
+        response.append("Access-Control-Allow-Origin", "*");
+        response.send("Failed to get data");            
+        console.error(e);
+        debugger;
+    }); 
+});
+
+async function getStockInfo(req)
 {
     const symbol = req.query.q;
 
-    //get financial info of the stock
-    let url   = `${YH_FINANCE_URL_V2}/get-financials?symbol=${symbol}&region=US`;
+    let url      = `${YH_MARKET_URL_V2}/get-quotes?symbols=${symbol}&region=US`;
+    let response = await fetch (url, OPTIONS);
+    let json     = await response.json();
 
-    fetch (url, OPTIONS)
-    .then(res => res.json())
+    return json.quoteResponse.result[0];
+
+    // const stockPrice = json.quoteResponse.result[0].regularMarketPrice;
+
+    // url      = `${YH_FINANCE_URL_V2}/get-financials?symbol=${symbol}&region=US`;
+    // response = await fetch (url, OPTIONS);
+    // json     = await response.json();
+
+    // json["marketPrice"] = stockPrice;
+
+    // return json;
+}
+
+router.get("/stock-info", function (req, response, next) 
+{
+    // const symbol = req.query.q;
+
+    // //get financial info of the stock
+    // let url   = `${YH_FINANCE_URL_V2}/get-financials?symbol=${symbol}&region=US`;
+
+    // fetch (url, OPTIONS)
+    // .then(res => res.json())
+
+    getStockInfo(req)
     .then(json => 
     {
         response.append("Access-Control-Allow-Origin", "*");

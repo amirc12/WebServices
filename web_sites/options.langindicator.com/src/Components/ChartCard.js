@@ -1,5 +1,6 @@
 import './Cards.css';
 import { useState, useEffect } from 'react';
+import { Chart } from "react-google-charts";
 
 const constants = require("../constants");
 
@@ -10,12 +11,6 @@ async function fetchStockInfo(symbol)
     const url      = `${constants.API_URL}/stock-info?q=${symbol}`;
     const response = await fetch (url, constants.FETCH_OPTIONS);
     const data     = await response.json();
-
-    // const price       = data.price.regularMarketPrice.fmt;
-    // const divRate     = data.summaryDetail.dividendRate.fmt  ? data.summaryDetail.dividendRate.fmt  : 0;
-    // const divYield    = data.summaryDetail.dividendYield.fmt ? data.summaryDetail.dividendYield.fmt : 0;
-    // const payoutRatio = data.summaryDetail.payoutRatio.fmt   ? data.summaryDetail.payoutRatio.fmt   : 0;
-    // const beta        = data.summaryDetail.beta.fmt          ? data.summaryDetail.beta.fmt          : 0;
 
     const price       = data.regularMarketPrice.toFixed(2);
     const priceChange = data.regularMarketChangePercent.toFixed(2);
@@ -108,6 +103,108 @@ function ContractCard({date, stockInfo, maxPriceChange})
         </div>);
 }
 
+function buildChartData(chartData, isPercents, stockInfo)
+{
+    //First set the header of the chart data
+    let data = [["Strike"]];
+    for(const key in chartData)
+    {
+        const dateStr   = new Date(key * 1000).toLocaleDateString();
+        data[0].push(dateStr);
+    }
+
+    //Then add the data itself
+    let rows = {};
+
+    let zeroLine = [];
+    for(let i = 0; i < Object.keys(chartData).length; i++)
+        zeroLine.push(null);
+
+    let i = 0;
+    for(const key in chartData)
+    {
+        for (const record of chartData[key])
+        {
+            if(!rows.hasOwnProperty(`${record.strike}`))
+                rows[`${record.strike}`] = [...zeroLine]; //[];
+
+            const value = isPercents ? record.premium / stockInfo.price * 100 : record.premium
+
+            // rows[`${record.strike}`].push(value);
+            rows[`${record.strike}`][i] = value;
+        }
+
+        i++;
+    }
+
+    for(const strike in rows)
+    {
+        let row = [strike, ...rows[strike]];
+        data.push(row);
+    }
+
+    data = data.sort(function(a, b) {return a[0] - b[0]});
+
+    return data;
+}
+
+function ChartCard({dates, stockInfo, maxPriceChange})
+{
+    const [isLoading, setIsLoading] = useState(false);
+    const [chartData, setChartData] = useState({});
+    const [isPercents, setIsPercents] = useState(false);
+
+    async function handleClick()
+    {
+        setIsLoading(true);
+
+        const currentTS = Math.floor(Date.now() / 1000);
+
+        let datesStrikes = {};
+        for(const date of dates)
+        {
+            const dif       = date - currentTS;
+            const difMonth  = Math.floor(dif / MONTH_SECONDS);
+            const divToPay  = Math.floor(difMonth / 3) / 4 * stockInfo.divRate;
+        
+            const strikes = await fetchContractStrikes(date, stockInfo, maxPriceChange, divToPay);
+            datesStrikes[`${date}`] = strikes;
+        }
+
+        setChartData(datesStrikes);
+    }
+
+    const vAxisTitle = isPercents ? "Premium %" : "Premium";
+    const chartOptions = 
+    {
+        width       : "100%",
+        height      : "500px",
+        title       : 'Premium By Expiration Date',
+        pointShape  : 'circle',
+        pointSize   : 5,
+        hAxis       : {title: "Strike"},
+        vAxis       : {title: vAxisTitle},
+    };
+
+    const data = buildChartData(chartData, isPercents, stockInfo);
+
+    return(
+        <div style={{borderTop: "1px solid gray"}}>
+            <button class="action_button" onClick={handleClick}>CHART</button>
+            <button class="action_button" onClick={() => setIsPercents(!isPercents)}>%</button>
+            {(Object.keys(chartData).length > 0)
+            ?   <div style={{padding: "0 10px 5px"}}>
+                <Chart
+                    chartType = "LineChart"
+                    data    = {data}
+                    options = {chartOptions}
+                />
+                </div>
+            :   isLoading && <div>Loading...</div>
+            }
+        </div>);
+}
+
 function StockCard({symbol, fromMonth, toMonth, maxPriceChange})
 {
     const [stockInfo, setStockInfo] = useState({symbol: '', price: 0, divRate: 0, divYield: 0, payoutRatio: 0, beta: 0});
@@ -147,6 +244,7 @@ function StockCard({symbol, fromMonth, toMonth, maxPriceChange})
                         </tr>
                     </table>
                     {contractDates.length > 0  ? <div>{contractCards}</div> : <div>Loading Call Contracts...</div>}
+                    {contractDates.length > 0  && <div><ChartCard dates={contractDates} stockInfo={stockInfo} maxPriceChange={maxPriceChange}/></div>}
                 </div>
             }
         </div>); 

@@ -32,6 +32,15 @@
     background-color: rgb(246, 251, 251);
 }
 
+.training_card_max
+{
+    /* display: flex; */
+    flex: 1;
+    border: 1px solid rgb(162, 159, 159);
+    /* padding: 5px; */
+    background-color: rgb(246, 251, 251);
+}
+
 .content_card
 {
     /* border: 1px solid gray; */
@@ -43,19 +52,39 @@
     /* flex: 1; */
 }
 
+.content_card_max
+{
+    font-size: large;
+    background-color: rgb(246, 251, 251);
+    padding: 10px;
+    width: 100%;
+    min-height: 300px;
+    /* min-width: 150px; */
+    /* flex: 1; */
+}
+
 .editor_card
 {
-    border-left: 1px solid lightgray;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-    align-items: center;
-    padding: 10px;
-    min-width: 250px;
-    row-gap: 15px;
-    background-color: azure;
-    /* flex: 1; */
-    /* color: beige; */
+    border-left      : 1px solid lightgray;
+    display          : flex;
+    flex-direction   : column;
+    align-items      : center;
+    padding          : 10px;
+    min-width        : 250px;
+    row-gap          : 15px;
+    background-color : azure;
+}
+
+.editor_card_max
+{
+    border-left      : 1px solid lightgray;
+    display          : flex;
+    flex-direction   : column;
+    align-items      : center;
+    padding          : 10px;
+    min-width        : 400px;
+    row-gap          : 15px;
+    background-color : azure;
 }
 
 .container div

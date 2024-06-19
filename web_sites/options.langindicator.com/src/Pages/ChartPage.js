@@ -1,7 +1,7 @@
 import './Pages.css';
 
 import { useState } from 'react';
-import StockCard from '../Components/StockCard'
+import ChartCard from '../Components/ChartCard'
 
 const SYMBOLS = 
 [
@@ -20,7 +20,7 @@ function InputField({style=styles.filterInput, onChangeHandler, value=''})
     return(<input style={style} type="text" value={value} onChange={(e) => onChangeHandler(e.target.value)}></input>);
 }
 
-function HomePage()
+function ChartPage()
 {
     const [inputSymbol, setInputSymbol]       = useState('');
     const [showFilter, setShowFilter]         = useState(false);
@@ -31,7 +31,7 @@ function HomePage()
 
     const symbolsButtons = SYMBOLS.map(symbol => <button onClick={() => setCardSymbols([...cardSymbols, symbol])}>{symbol}</button>);
 
-    const stockCards = cardSymbols.map(symbol => <StockCard symbol={symbol} fromMonth={fromMonth} toMonth={toMonth} maxPriceChange={maxPriceChange}/>);
+    const chartCards = cardSymbols.map(symbol => <ChartCard symbol={symbol} fromMonth={fromMonth} toMonth={toMonth} maxPriceChange={maxPriceChange}/>);
 
     const filterButtonText = showFilter ? "Hide Filter" : "Show Filter";
 
@@ -51,8 +51,6 @@ function HomePage()
             {showFilter &&
                 <div class="filter_form">
                     <div>From: <InputField value={fromMonth} onChangeHandler={setFromMonth} /> to <InputField value={toMonth} onChangeHandler={setToMonth}/> Months.</div>                    
-                    {/* <div>From: <InputField value={fromMonth} onChangeHandler={setFromMonth} /> Months.</div>
-                    <div>To: <InputField value={toMonth} onChangeHandler={setToMonth} /> Months.</div> */}
                     <div>Max Price Change: <InputField value={maxPriceChange} onChangeHandler={setMaxPriceChange} /> %</div>
                 </div>
             }
@@ -61,11 +59,11 @@ function HomePage()
                 {symbolsButtons}
             </div>
 
-            <div className='stock_cards_container'>
-                {stockCards}
+            <div className='chart_cards_container'>
+                {chartCards}
             </div>
         </div>
     );
 }
 
-export default HomePage;
+export default ChartPage;

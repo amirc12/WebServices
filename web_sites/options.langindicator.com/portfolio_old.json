@@ -11,6 +11,17 @@
         "exp_date"       : "2024-08-16",
         "options_amount" : 1
     },
+	{
+		"date"           : "2024-01-18",
+		"symbol"         : "CAT",
+		"price"          : 278.10,
+		"shares"         : 100,
+		"strike"         : 300,
+		"premium"        : 14.4,
+		"dividend"       : 2.6,
+		"exp_date"       : "2024-08-16",
+		"options_amount" : 1
+	},	
     {
         "date"           : "2024-01-25",
         "symbol"         : "KO",
@@ -90,15 +101,27 @@
         "exp_date"       : "2024-09-20",
         "options_amount" : 1
     },
+    {
+        "date"           : "2023-05-08",
+        "symbol"         : "XOM",
+        "origin_price"   : 93.38,
+        "price"          : 110.11,
+        "shares"         : 100,
+        "strike"         : 115,
+        "premium"        : 8.55,
+        "dividend"       : 1.82,
+        "exp_date"       : "2024-01-19",
+        "options_amount" : 1
+    },
 	{
-		"date"           : "2024-03-07",
-		"symbol"         : "CAT",
-		"price"          : 340.66,
-		"shares"         : 100,
-		"strike"         : 360,
-		"premium"        : 17.35,
-		"dividend"       : 1.3,
-		"exp_date"       : "2024-08-16",
-		"options_amount" : 1
-	}
+		"date"           : "2023-06-15",
+		"symbol"         : "IPG",
+		"price"          : 40.61,
+		"shares"         : 200,
+		"strike"         : 44,
+		"premium"        : 1.85,
+		"dividend"       : 0.62,
+		"exp_date"       : "2024-01-19",
+		"options_amount" : 2
+	}	
 ]

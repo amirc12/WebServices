@@ -1,7 +1,10 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import HomePage from './Pages/HomePage'
+import HomePage      from './Pages/HomePage'
 import PortfolioPage from './Pages/PortfolioPage'
+import ChartPage     from './Pages/ChartPage'
+import AlgoTradePage from './Pages/AlgoTradePage'
+
 
 function PageHeader()
 {
@@ -14,6 +17,8 @@ function PageHeader()
                 <div className="topnav">
                     <div><NavLink to="/">Home</NavLink ></div>
                     <div><NavLink to="/portfolio">Portfolio</NavLink ></div>
+                    <div><NavLink to="/chart">Chart</NavLink ></div>
+                    <div><NavLink to="/algoTrade">AlgoTrade</NavLink ></div>
                 </div>
             </header>
         </div>
@@ -27,6 +32,8 @@ function PageContent()
             <Routes>
                 <Route path="/"          element={<HomePage/>} />
                 <Route path="/portfolio" element={<PortfolioPage/>} />
+                <Route path="/chart"     element={<ChartPage/>} />
+                <Route path="/algoTrade" element={<AlgoTradePage/>} />
             </Routes>
         </div>
     );

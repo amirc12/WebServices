@@ -10,6 +10,15 @@ class Utils
     
         return myWords;
     };
+
+    static async fetchDetailsWordsData()
+    {
+        const url      = `${constants.API_URL}/details_words?q=amir`;
+        const response = await fetch (url, constants.FETCH_OPTIONS);
+        const detailsWords  = await response.json();
+    
+        return detailsWords;
+    };
 }
 
 export default Utils;

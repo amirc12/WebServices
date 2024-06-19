@@ -11,9 +11,9 @@ function extractTradeFromDataRecord(record)
     const currentRev = (rev / record.price * 100).toFixed(2);
     const stockPriceChange = (record.current_stock_price / record.price * 100 - 100).toFixed(2);
 
-    trade.stockPrice       = record.current_stock_price;
+    trade.stockPrice       = parseFloat(record.current_stock_price).toFixed(2);
     trade.stockPriceChange = stockPriceChange;
-    trade.optionPrice      = record.current_call_price;
+    trade.optionPrice      = parseFloat(record.current_call_price).toFixed(2);
     trade.optionPriceType  = record.call_price_type;
     trade.currentRev       = currentRev;
 
@@ -62,12 +62,15 @@ function TradeStatusHeader()
 
 function TradeStatusRow({trade})
 {
+    const className = (trade.stockPrice > trade.strike) ?  'td_blue' :
+                      (trade.stockPrice < trade.price)  ?  'td_red'  : 'td_green';
+
     return(
         <tr>
             <td>{trade.date}</td>
             <td>{trade.symbol}</td>
             <td>{trade.price}$</td>
-            <td>{trade.strike}$</td>
+            <td class="td_bold">{trade.strike}$</td>
             <td>{trade.strikeChange}%</td>
             <td>{trade.premium}$</td>
             <td>{trade.premiumChange}%</td>
@@ -75,7 +78,8 @@ function TradeStatusRow({trade})
             <td>{trade.otm}%</td>
             <td>{trade.itm}%</td>
             <td>{trade.expDate}</td>
-            <td>{trade.stockPrice}</td>
+            {/* {(trade.stockPrice > trade.strike) ? <td class={className}>{trade.stockPrice}</td> : <td>{trade.stockPrice}</td>} */}
+            <td class={className}>{trade.stockPrice}</td>
             <td>{trade.stockPriceChange}%</td>
             <td>{trade.optionPrice}</td>
             <td>{trade.optionPriceType}</td>
