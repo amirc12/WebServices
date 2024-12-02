@@ -29,7 +29,7 @@ header
 
 .logo 
 {
-    flex             : 2;
+    flex             : 3;
     align-items      : center;
     color            : white;
     font-size        : 38px;
@@ -46,7 +46,7 @@ header
 
 .topnav 
 {
-    flex             : 1;
+    flex             : 2;
     display          : flex;
     justify-content  : center;
     overflow         : hidden;
@@ -85,7 +85,9 @@ header
 .title
 {
     font-size      : 26px;
-    padding-bottom : 20px;
+    padding-bottom : 5px;
+    margin-bottom  : 12px;
+    border-bottom  : 1px solid lightgray;
 }
 
 .description 
@@ -97,7 +99,7 @@ header
 
 .install
 {
-    padding          : 30px;
+    padding          : 20px;
     background-color : white;
     display          : flex;
     gap              : 20px;
@@ -128,7 +130,7 @@ li
 
 a
 {
-  color: #294c7d; 
+  color: rgb(22, 106, 234); 
 }
 
 .right_col_item
@@ -145,9 +147,21 @@ a
     margin-left      : 35px;
     margin-right     : 35px;
     padding          : 10px;
-    border-radius    : 4px;
+    /* border-radius    : 4px; */
     border           : 1px solid #f7c22f;
     background-color : #eec75e;
+    color            : black;
+}
+
+.call_for_actions
+{
+    margin-top       : 75px;
+    margin-left      : 35px;
+    margin-right     : 35px;
+    padding          : 10px;
+    border-radius    : 4px;
+    /* border           : 1px solid #f7c22f; */
+    /* background-color : #eec75e; */
     color            : black;
 }
 
@@ -206,24 +220,28 @@ footer
 
 button 
 {
-    background-color : #85b731;
+    background-color : rgb(22, 106, 234);
     border           : none;
-    border-radius    : 5px;
+    /* border-radius    : 5px; */
     color            : white;
     padding          : 15px 15px;
     text-align       : center;
     text-decoration  : none;
     display          : inline-block;
     font-family      : Verdana, Arial, sans-serif;
-    font-size        : 16px;
-    margin           : 4px 2px;
+    font-size        : 18px;
+    margin-left      : 70px;
+    margin-bottom: 10px;
     cursor           : pointer;
-    width            : 170px;
+    /* margin           : 4px 2px; */
+    /* width            : 170px; */
 }
 
 button:hover 
 {
-    background-color: #5f8323;
+    border: 2px solid rgb(22, 106, 234);
+    background-color : white;
+    color            : rgb(22, 106, 234);
 }
 
 input[type=text], select, textarea 
@@ -292,18 +310,6 @@ input[type=submit]:hover
         padding          : 5px;
     }
         
-    .install
-    {
-        flex-direction: column;
-        padding          : 10px;
-        gap              : 10px;
-    }
-    
-    .install_item
-    {
-        flex-direction: column;
-    }
-
 	header 
 	{
         flex-direction : column;

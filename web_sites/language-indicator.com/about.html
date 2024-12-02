@@ -28,6 +28,7 @@
             </div>
             <div class="topnav">
                 <a href="index.html">Home</a>
+                <a href="download.html">Download</a>
                 <a href="contact.html">Contact</a>
                 <a class="active" href="about.html">About</a>
             </div>
@@ -38,26 +39,36 @@
 
         <div class="description">
             <div style="flex: 2;">
-                <b><u>About Language Indicator</u></b><br><br>
+                <b><u>About Language Indicator</u></b><br>
                 Language Indicator is a small, yet very helpful piece of software that was designed to help people who use more than one language on their computer.<br><br>
                 It's main goal is simply to show a small tooltip indication that shows the current keyboard language before you start typing any text on any editable area.<br><br>
                 It was born as a self helper software that I have created for myself after many times of mistyping text using the wrong language.<br><br>
-                I hope you will find it useful for you as well and I'll be very grateful to hear any comments of any type to improve it in the next versions.<br><br><br>
+                I hope you will find it useful for you as well and I'll be very grateful to hear any comments of any type to improve it in the next versions.<br><br>
+
+                <p>
+                    <b><u>More Info</u></b><br>
+                    Language Indicator flag is displayed whenever you click on some editable area or when the focus moves to editable area as illustrated in the video on the right.<br><br>
+                    If you move the mouse cursor over the flag icon, it will be changed to more informative window:<br>
+                    <img src="./images/expand_flag.png" style="max-width: 100%; max-height: 100%; margin-left:20px; margin-top:10px;"><br>
+                    <div><u>Now you can do the following:</u></div>
+                    <ul>
+                        <li>Click on the flag icon or the language name to change the keyboard language layout.</li>
+                        <li><img src="./images/settings_button.png""> Click the Settings button to open the Settings dialog.</li>
+                        <li><img src="./images/snooze_button.png""> Click the Snooze button to pause the app temporarily for a predefined time, which can be changed in the Settings dialog.</li>
+                        <li><img src="./images/disable_button.png""> Click on the Disable button to permanently disable Language Indicator for this application. (You can remove application from the disable list in the Settings dialog)</li>
+                    </ul>              
+                    <br><b><u>Settings Dialog</u></b><br>
+                    Most of Language Indicator behaviour and appearance can be changed in the Settings dialog:<br><br>
+        
+                    <img src="./images/settings.png" style="max-width: 100%; max-height: 100%; margin-left:20px; margin-top:20px;">
+                </p>        
 
                 <b><u>Technically..</u></b><br><br>
                 Language Indicator is composed of two files. The main file is a DLL that does most of the work and EXE file that simply runs that DLL and also adds the icon in the system tray.<br><br>
                 It is written in C++ on Microsoft Visual Studio 2019 using native Win32 API calls. Not MFC nor .NET packages are needed<br><br>
-                Current (and not last) Version - 1.3.0<br><br>
-                Release Date - 12 Sep 2022
+                Current (and not last) Version - 1.4.0<br><br>
+                Release Date - 3 Dec 2024
 
-                <p style="padding-top:20px;">
-                    <b><u>More Info</u></b><br><br>
-                    Language Indicator window is displayed whenever you click on some editable area or when the focus moves to editable area.<br><br>
-                    You can change the keyboard language right from the Language Indicator window by clicking on the language name.<br><br>
-                    Most of Language Indicator behaviour and appearance can be changed from the settings dialog:<br><br>
-        
-                    <img src="./images/settings.png" style="max-width: 100%; max-height: 100%; margin-left:20px; margin-top:20px;">
-                </p>        
             </div>
             <div style="flex: 1;">
                 <div class="right_col_item">
@@ -69,7 +80,7 @@
 
     <div style="background-color : #404040;">
         <footer>
-            Copyright (c) 2021 - Language Indicator - All Rights Reserved
+            Copyright (c) 2024 - Language Indicator - All Rights Reserved
         </footer>
     </div>
 
