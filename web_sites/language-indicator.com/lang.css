@@ -141,6 +141,15 @@ a
     background-color : #f3f5f1;
 }
 
+.right_links
+{
+    margin-top       : 75px;
+    margin-left      : 35px;
+    margin-right     : 35px;
+    padding          : 20px;
+    font-size: 18px;
+}
+
 .buy_me_coffee
 {
     margin-top       : 75px;
@@ -221,7 +230,7 @@ footer
 button 
 {
     background-color : rgb(22, 106, 234);
-    border           : none;
+    border: 2px solid rgb(22, 106, 234);
     /* border-radius    : 5px; */
     color            : white;
     padding          : 15px 15px;

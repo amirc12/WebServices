@@ -9,3 +9,5 @@ dictionary.json
 /web_sites/mywords.langindicator.com/build
 /web_sites/options.langindicator.com/build
 /web_sites/shirco-studio.com/build
+web_sites/language-indicator.com/contact_data.json
+.gitignore

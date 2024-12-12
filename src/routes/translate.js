@@ -114,7 +114,7 @@ async function OnPostRequest(req, response)
     {
         //fs.writeFileSync(process.env.DICTIONARY, data);
         //fs.appendFile(process.env.DICTIONARY, data);
-        fs.writeFile(dictionaryPath, 'data', function (err) 
+        fs.writeFile(dictionaryPath, data, function (err) 
         {
             if (err) throw err;
             console.log('Dictionary saved');
@@ -212,7 +212,7 @@ function saveDataToFile(req, data, fileName)
 function loadDataFromFile(req, fileName)
 {
     const filePath = utils.getCurrentDomainFilePath(req, fileName);
-    const jsonStr = fs.readFileSync(filePath);
+    const jsonStr = fs.readFileSync(filePath, 'utf8');
     const words = JSON.parse(jsonStr);
     return words;
 }

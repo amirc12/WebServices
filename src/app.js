@@ -52,7 +52,7 @@ app.post("/contact", (req, res) =>
         fs.writeFile(filePath, data, function (err) 
         {
             if (err) throw err;
-            console.log('Contatc Data saved');
+            console.log('Contact Data saved');
         });
     }
     catch(e)
