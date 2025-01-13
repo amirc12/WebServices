@@ -5,26 +5,26 @@
 		<MASTER_PAD_INFO>Portable Application Description, or PAD for short, is a data set that is used by shareware authors to disseminate information to anyone interested in their software products. To find out more go to http://www.asp-shareware.org/pad</MASTER_PAD_INFO>
 	</MASTER_PAD_VERSION_INFO>
 	<Company_Info>
-		<Company_Name>Language Indicator</Company_Name>
+		<Company_Name>AC Software Dev</Company_Name>
 		<Address_1 />
 		<Address_2 />
 		<City_Town>Tel Aviv</City_Town>
 		<State_Province />
 		<Zip_Postal_Code />
 		<Country>Israel</Country>
-		<Company_WebSite_URL>http://www.language-indicator.com</Company_WebSite_URL>
+		<Company_WebSite_URL>https://www.language-indicator.com</Company_WebSite_URL>
 		<Contact_Info>
-			<Author_First_Name>language</Author_First_Name>
-			<Author_Last_Name>indicator</Author_Last_Name>
-			<Author_Email>info@language-indicator.com</Author_Email>
+			<Author_First_Name>AC</Author_First_Name>
+			<Author_Last_Name>Software Dev</Author_Last_Name>
+			<Author_Email>amir.langindicator@gmail.com</Author_Email>
 			<Contact_First_Name></Contact_First_Name>
 			<Contact_Last_Name></Contact_Last_Name>
-			<Contact_Email>info@language-indicator.com</Contact_Email>
+			<Contact_Email>amir.langindicator@gmail.com</Contact_Email>
 		</Contact_Info>
 		<Support_Info>
 			<Sales_Email></Sales_Email>
-			<Support_Email>info@language-indicator.com</Support_Email>
-			<General_Email>info@language-indicator.com</General_Email>
+			<Support_Email>amir.langindicator@gmail.com</Support_Email>
+			<General_Email>amir.langindicator@gmail.com</General_Email>
 			<Sales_Phone />
 			<Support_Phone />
 			<General_Phone />
@@ -33,26 +33,26 @@
 	</Company_Info>
 	<Program_Info>
 		<Program_Name>Language Indicator</Program_Name>
-		<Program_Version>1.2.9</Program_Version>
-		<Program_Release_Month>7</Program_Release_Month>
-		<Program_Release_Day>24</Program_Release_Day>
-		<Program_Release_Year>2022</Program_Release_Year>
+		<Program_Version>1.5.0</Program_Version>
+		<Program_Release_Month>12</Program_Release_Month>
+		<Program_Release_Day>31</Program_Release_Day>
+		<Program_Release_Year>2024</Program_Release_Year>
 		<Program_Cost_Dollars />
 		<Program_Cost_Other_Code />
 		<Program_Cost_Other />
 		<Program_Type>Freeware</Program_Type>
-		<Program_Release_Status>Beta</Program_Release_Status>
+		<Program_Release_Status></Program_Release_Status>
 		<Program_Install_Support>Install and Uninstall</Program_Install_Support>
-		<Program_OS_Support>Windows XP, Windows 7, Windows 8, Windows 9, Windows 10, Windows 11</Program_OS_Support>
+		<Program_OS_Support>Windows 10, Windows 11</Program_OS_Support>
 		<Program_Language>English</Program_Language>
 		<Program_Change_Info />
 		<Program_Specific_Category>System</Program_Specific_Category>
 		<Program_Category_Class></Program_Category_Class>
 		<Program_System_Requirements />
 		<File_Info>
-			<File_Size_Bytes>185330</File_Size_Bytes>
-			<File_Size_K>180</File_Size_K>
-			<File_Size_MB>0.18</File_Size_MB>
+			<File_Size_Bytes>245092</File_Size_Bytes>
+			<File_Size_K>245</File_Size_K>
+			<File_Size_MB>0.25</File_Size_MB>
 		</File_Info>
 		<Expire_Info>
 			<Has_Expire_Info>N</Has_Expire_Info>
@@ -66,24 +66,25 @@
 	</Program_Info>
 	<Program_Descriptions>
 		<English>
-			<Keywords>Language Indicator - It's all about saving type errors</Keywords>
-			<Char_Desc_45>Language Indicator of keyboard layout</Char_Desc_45>
-			<Char_Desc_80 />
-			<Char_Desc_250>Language Indicator is a small, yet very helpful piece of software that simply shows a small tooltip indication of the current keyboard language before you start typing any text on any editable area.</Char_Desc_250>
-			<Char_Desc_450>Language Indicator is a small, yet very helpful piece of software that simply shows a small tooltip indication of the current keyboard language before you start typing any text on any editable area.</Char_Desc_450>
+			<Keywords>Language Indicator - It's all about saving typos</Keywords>
+			<Char_Desc_45>Minimize your typing errors.</Char_Desc_45>
+			<Char_Desc_80>Displays a flag icon near your mouse cursor indicating the current keyboard layout.</Char_Desc_80>
+			<Char_Desc_250>Language Indicator is a compact yet powerful tool created for users who frequently switch between multiple languages on their computer. Its main function is to display a small tooltip showing the current keyboard language before you begin typing in any editable field.
+			</Char_Desc_250>
+			<Char_Desc_450></Char_Desc_450>
 			<Char_Desc_2000 />
 		</English>
 	</Program_Descriptions>
 	<Web_Info>
 		<Application_URLs>
-			<Application_Info_URL>http://www.language-indicator.com</Application_Info_URL>
+			<Application_Info_URL>https://www.language-indicator.com</Application_Info_URL>
 			<Application_Order_URL />
-			<Application_Screenshot_URL>http://www.language-indicator.com/images/screenshot.png</Application_Screenshot_URL>
-			<Application_Icon_URL>http://www.language-indicator.com/images/appicon.png</Application_Icon_URL>
-			<Application_XML_File_URL>http://www.language-indicator.com/lang_pad_file.xml</Application_XML_File_URL>
+			<Application_Screenshot_URL>https://www.language-indicator.com/images/li_8.png</Application_Screenshot_URL>
+			<Application_Icon_URL>https://www.language-indicator.com/images/lang-logo.png</Application_Icon_URL>
+			<Application_XML_File_URL>https://www.language-indicator.com/lang_pad_file.xml</Application_XML_File_URL>
 		</Application_URLs>
 		<Download_URLs>
-			<Primary_Download_URL>http://www.language-indicator.com/setup.exe</Primary_Download_URL>
+			<Primary_Download_URL>https://www.language-indicator.com/lang150_setup.exe</Primary_Download_URL>
 			<Secondary_Download_URL />
 			<Additional_Download_URL_1 />
 			<Additional_Download_URL_2 />

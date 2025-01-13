@@ -38,7 +38,7 @@ async function fetchContractDates(symbol, fromMonth, toMonth, maxPriceChange, di
     const currentTS = Math.floor(Date.now() / 1000);
 
     let dates = [];
-    for(const date of data.meta.expirationDates)
+    for(const date of data.optionChain.result[0].expirationDates)
     {
         const dif = date - currentTS;
         if(dif >= MONTH_SECONDS * fromMonth && dif <= MONTH_SECONDS * toMonth)
@@ -55,18 +55,20 @@ async function fetchContractStrikes(date, stockInfo, maxPriceChange, divToPay)
     const data     = await response.json();
 
     let strikes = [];
-    for(const call of data.contracts.calls)
+    for(const option of data.optionChain.result[0].options[0].straddles)
     {
-        if( (call.strike.raw / stockInfo.price) > 1 && (call.strike.raw / stockInfo.price) <= (maxPriceChange / 100) )
+        if(!option.hasOwnProperty("call")) continue;
+
+        if( (option.call.strike / stockInfo.price) > 1 && (option.call.strike / stockInfo.price) <= (maxPriceChange / 100) )
         {
-            const premium     = call.bid.raw ? call.bid.raw : call.lastPrice.raw;
+            const premium     = option.call.bid ? option.call.bid : option.call.lastPrice;
             const premiumP    = (premium / stockInfo.price * 100).toFixed(2);
             const otm         = ((premium + divToPay) / stockInfo.price * 100).toFixed(2);
-            const itm         = ((call.strike.raw - stockInfo.price + premium + divToPay) / stockInfo.price * 100).toFixed(2);
-            const priceChange = ((call.strike.raw / stockInfo.price - 1) * 100).toFixed(2);
+            const itm         = ((option.call.strike - stockInfo.price + premium + divToPay) / stockInfo.price * 100).toFixed(2);
+            const priceChange = ((option.call.strike / stockInfo.price - 1) * 100).toFixed(2);
             const premiumStr  = `${premium}$ (${premiumP}%)`;
 
-            strikes.push({strike: call.strike.raw, priceChange: priceChange, premium: premium, premiumP: premiumP, premiumStr: premiumStr, otm:otm, itm: itm});
+            strikes.push({strike: option.call.strike, priceChange: priceChange, premium: premium, premiumP: premiumP, premiumStr: premiumStr, otm:otm, itm: itm});
         }
     }
 

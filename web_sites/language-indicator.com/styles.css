@@ -1,0 +1,260 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Header Styles */
+header {
+    background-color: #404040;
+    padding: 20px 0;
+}
+
+header .logo {
+    font-size: 24px;
+    color: white;
+    margin-left: 20px;
+}
+
+header nav {
+    margin-right: 20px;
+    display: inline-block;
+}
+
+header nav a {
+    color: white;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+header .download-btn {
+    background-color: #5cb85c;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+/* Hero Section */
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+section h1 {
+    font-size: 36px;
+    color: #333;
+}
+
+section p {
+    font-size: 18px;
+    color: #666;
+    margin: 20px 0;
+}
+
+section img {
+    max-width: 80%;
+    margin-bottom: 20px;
+}
+
+section .cta-btn {
+    font-size: 18px;
+    padding: 12px 30px;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+section .learn-more {
+    font-size: 18px;
+    margin-top: 20px;
+    display: inline-block;
+    color: #007bff;
+}
+
+/* Features Section */
+#features {
+    background-color: #ffffff;
+}
+
+#features h2 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+#features .feature {
+    text-align: center;
+    width: 30%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#features .feature img {
+    max-width: 100px;
+    margin-bottom: 15px;
+}
+
+#features .feature h3 {
+    font-size: 20px;
+    color: #333;
+}
+
+#features .feature p {
+    font-size: 16px;
+    color: #666;
+}
+
+#features .feature-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+/* How It Works Section */
+section#how-it-works {
+    background-color: #f4f4f4;
+}
+
+section#how-it-works img {
+    max-width: 80%;
+    margin-bottom: 20px;
+}
+
+section#how-it-works p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Testimonials Section */
+section#testimonials {
+    background-color: #ffffff;
+}
+
+#testimonials h2 {
+    font-size: 30px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+#testimonials .testimonial {
+    text-align: center;
+    width: 30%;
+    border: 1px solid #ddd;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+#testimonials .testimonial p {
+    font-size: 16px;
+    color: #666;
+}
+
+#testimonials .testimonial strong {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Call-to-Action Section */
+section#cta {
+    background-color: #404040;
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+section#cta h2 {
+    font-size: 30px;
+}
+
+section#cta .cta-btn {
+    font-size: 18px;
+    padding: 12px 30px;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+section#cta .learn-more {
+    font-size: 18px;
+    margin-top: 20px;
+    color: #007bff;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #404040;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+    margin-right: 20px;
+    font-size: 16px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #ddd;
+    margin-top: 10px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    #features .feature-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #features .feature {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    section#how-it-works img,
+    section#testimonials .testimonial img {
+        max-width: 100%;
+    }
+
+    #testimonials .testimonial {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    section h1 {
+        font-size: 28px;
+    }
+
+    section p {
+        font-size: 16px;
+    }
+
+    footer p {
+        font-size: 12px;
+    }
+
+    header .logo {
+        font-size: 20px;
+    }
+
+    header nav a {
+        font-size: 16px;
+    }
+}

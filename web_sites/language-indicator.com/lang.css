@@ -11,7 +11,8 @@ body
   font-size        : 16px;
   /* letter-spacing   : 1px; */
   line-height      : 1.5;
-  color            : #5A5A64;
+  /* color            : #5A5A64; */
+  color            : #3a3a3f;
   margin           : 0px;
   background-color : #F4F4F4;
   padding          : 0px;
@@ -29,7 +30,7 @@ header
 
 .logo 
 {
-    flex             : 3;
+    flex             : 1;
     align-items      : center;
     color            : white;
     font-size        : 38px;
@@ -46,18 +47,18 @@ header
 
 .topnav 
 {
-    flex             : 2;
+    flex             : 1;
     display          : flex;
     justify-content  : center;
     overflow         : hidden;
-    padding          : 10px;
+    padding          : 5px;
 }
 
 .topnav a 
 {
   color: White;
   text-align: center;
-  padding: 6px 16px;
+  padding: 6px 12px;
   text-decoration: none;
 }
 
@@ -74,12 +75,55 @@ header
 
 .content 
 {
-    margin           : 2em auto;
+    margin           : auto;
     width            : 90%;
     max-width        : 1000px;
     background-color : white;
     padding          : 25px;
+    padding-bottom: 10px;
     box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+}
+
+.content_support
+{
+    color            : #242426;
+    margin           : 0px auto;
+    width            : 90%;
+    max-width        : 1000px;
+    background-color : beige;
+    padding          : 15px;
+    border           : 1px solid lightgray; 
+    box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+}
+
+.content_tray_icon
+{
+    color            : #242426;
+    background-color : beige;
+    padding          : 10px;
+    box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+    border           : 1px solid lightgray; 
+    margin-top       : 20px;
+}
+
+.inst_comp_content 
+{
+    margin           : 2em auto;
+    width            : 100%;
+    max-width        : 1300px;
+    background-color : white;
+    padding          : 10px;
+    box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+}
+
+.settings_info_content 
+{
+    width            : 100%;
+    background-color : rgb(243, 241, 231);
+    border-radius: 5px;
+    padding          : 10px;
+    box-shadow       : 0px 3.5px 5.5px 1px rgba(0, 0, 0, 0.02);
+    margin-bottom: 20px;
 }
 
 .title
@@ -94,7 +138,9 @@ header
 {
     display        : flex;
     /* flex-direction : row-reverse; */
-    gap            : 30px;
+    gap            : 20px;
+    padding-bottom : 10px;
+    border-bottom  : 1px solid lightgray;
 }
 
 .install
@@ -125,7 +171,8 @@ header
 
 li
 {
-    margin-top: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
 }
 
 a
@@ -217,6 +264,11 @@ a
 
 footer 
 {
+    display     : flex;
+    justify-content: center; /* Align horizontally */
+    align-items: center;    /* Align vertically */
+    gap: 10px;
+    
     background-color : #404040;
     margin           : auto;
     width            : 90%;
@@ -231,15 +283,15 @@ button
 {
     background-color : rgb(22, 106, 234);
     border: 2px solid rgb(22, 106, 234);
-    /* border-radius    : 5px; */
+    border-radius    : 10px;
     color            : white;
-    padding          : 15px 15px;
+    padding          : 10px 10px;
     text-align       : center;
     text-decoration  : none;
     display          : inline-block;
     font-family      : Verdana, Arial, sans-serif;
     font-size        : 18px;
-    margin-left      : 70px;
+    /* margin-left      : 70px; */
     margin-bottom: 10px;
     cursor           : pointer;
     /* margin           : 4px 2px; */
@@ -289,6 +341,58 @@ input[type=submit]:hover
     margin: 20px;
     padding: 10px;
 }
+
+/* Custom List Styles */
+.features-list 
+{
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0;           /* Remove default padding */
+    margin: 0;            /* Remove default margin */
+}
+
+.custom-list li 
+{
+    margin-top: 10px; 
+    margin-right: 10px;
+    background-color: #f9f9f9; /* Light gray background */
+    border: 1px solid #ddd;    /* Thin border */
+    border-radius: 5px;        /* Rounded corners */
+    padding: 10px 15px;        /* Add padding inside the item */
+    margin-bottom: 10px;       /* Add space between items */
+    display: flex;             /* Allow for icon or decoration */
+    align-items: center;       /* Center content vertically */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Optional Icon */
+.features-list li::before 
+{
+    content: "\2713";          /* Unicode checkmark */
+    font-size: 18px;           /* Icon size */
+    color: #5cb85c;            /* Green color */
+    margin-right: 10px;        /* Space between icon and text */
+    font-weight: bold;
+}
+
+.lang-flag
+{
+    display: flex;
+    justify-content: center; /* Align horizontally */
+    align-items: center;    /* Align vertically */
+}
+
+.flag-icon
+{
+    margin-top: 10px; 
+    margin-right: 10px;
+}
+
+.center-text 
+{
+    display: flex;
+    justify-content: center; /* Align horizontally */
+    align-items: center;    /* Align vertically */
+ }
 
 @media only screen and (max-width: 600px) 
 {

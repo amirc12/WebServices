@@ -223,13 +223,13 @@ async function getHistoricalData(req, res)
 
         const ret = 
         {
-            date: price.date,
-            dateStr: new Date(price.date * 1000).toLocaleDateString(),
-            open: price.open.toFixed(2),
-            close: price.close.toFixed(2),
-            change: change.toFixed(2),
+            date         : price.date,
+            dateStr      : new Date(price.date * 1000).toLocaleDateString(),
+            open         : price.open.toFixed(2),
+            close        : price.close.toFixed(2),
+            change       : change.toFixed(2),
             percentChange: percentChange.toFixed(4),
-            revenue: rev.toFixed(2)
+            revenue      : rev.toFixed(2)
         }
 
         yesterdayClose  = price.close;
@@ -314,7 +314,7 @@ router.get("/options", function (req, response, next)
 
     /*get options info: 
     if date is not specified, return the contarcts by date*/
-    let url   = `${YH_FINANCE_URL_V2}/get-options?symbol=${symbol}&region=US&date=${date}`;
+    let url   = `${YH_FINANCE_URL_V3}/get-options?symbol=${symbol}&region=US&date=${date}`;
 
     fetch (url, OPTIONS)
     .then(res => res.json())
