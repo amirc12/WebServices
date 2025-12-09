@@ -6,8 +6,6 @@ const fs = require("fs");
 const googleKeyPath = require('path').format({ dir: process.cwd(), base: process.env.GOOGLE_KEY });
 const dictionaryPath = require('path').format({ dir: process.cwd(), base: process.env.DICTIONARY });
 
-console.log(dictionaryPath);
-
 const dictionary = require(dictionaryPath);
 // const dictionary = require(process.env.DICTIONARY);
 
@@ -41,12 +39,9 @@ async function translateTextBasic(words)
     let [translations] = await translate.translate(words, options);
 
     translations = Array.isArray(translations) ? translations : [translations];
-    console.log('Translations:');
-
-    translations.forEach((translation, i) => 
-    {
-        console.log(`${i} - ${words[i]} => (${target}) ${translation}`);
-    });
+    
+    // console.log('Translations:');
+    // translations.forEach((translation, i) => { console.log(`${i} - ${words[i]} => (${target}) ${translation}`); });
 
     let json = {};
     for(let i = 0; i < words.length; i++)
@@ -55,7 +50,6 @@ async function translateTextBasic(words)
     }
 
     return json;
-    //return translations;
 }
 
 async function OnPostRequest(req, response)
@@ -117,7 +111,7 @@ async function OnPostRequest(req, response)
         fs.writeFile(dictionaryPath, data, function (err) 
         {
             if (err) throw err;
-            console.log('Dictionary saved');
+            // console.log('Dictionary saved');
         });
     }
     catch(e)
@@ -197,7 +191,7 @@ function saveDataToFile(req, data, fileName)
         fs.writeFile(filePath, dataStr, function (err) 
         {
             if (err) throw err;
-            console.log('Words Data Saved');
+            // console.log('Words Data Saved');
             // response.append("Access-Control-Allow-Origin", "*");
             // response.send({status: 'ok'});    
         });

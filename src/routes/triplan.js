@@ -27,7 +27,7 @@ router.post("/update", function (req, response, next)
         fs.writeFile(filePath, tripPlanStr, function (err) 
         {
             if (err) throw err;
-            console.log('Trip Plan Saved');
+            // console.log('Trip Plan Saved');
             response.append("Access-Control-Allow-Origin", "*");
             response.send({status: 'ok'});    
         });

@@ -33,7 +33,7 @@ async function savePlansToFile(req, plans)
     {
         let plansStr = JSON.stringify(plans, null, 2);
         fs.writeFileSync(filePath, plansStr, 'utf8');
-        console.log('Plans file saved successfully');
+        // console.log('Plans file saved successfully');
     }
     catch(err)
     {
@@ -56,7 +56,7 @@ async function loadPlansFromFile(req)
     {
         const jsonStr = fs.readFileSync(filePath, 'utf8');
         plans = JSON.parse(jsonStr);
-        console.log('Plans file loaded successfully');
+        // console.log('Plans file loaded successfully');
     }
     catch(err)
     {

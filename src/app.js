@@ -24,35 +24,50 @@ app.use("/studio", studio);
 
 app.post("/", (req, res)=> 
 {
-    console.log('/post request');
+    // console.log('/post request');
     return res.send("web services POST response");
 });
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server listening at http://localhost:${PORT}`) );
 
-//Handle contact us request
-app.post("/contact", (req, res) => 
+class Mutex 
 {
-    console.log('/contact request');
+    constructor() {this.isLocked = false;}
+
+    async lock() 
+    {
+        while(this.isLocked)
+            await new Promise(resolve => setTimeout(resolve, 50)); // Wait until unlocked
+
+        this.isLocked = true;
+    }
+
+    unlock() {this.isLocked = false;}
+}
+
+const g_Mutex = new Mutex;
+
+//Handle contact us request
+app.post("/contact", async function (req, res) 
+{
+    await g_Mutex.lock();
+
     const filePath = utils.getCurrentDomainFilePath(req, "contact_data.json");
     const contactData = require(filePath);
 
     let newMsg = JSON.parse(req.body);
     const currentDate = moment().format('YYYY-MM-DD');
-    // newMsg.date = currentDate;
     newMsg = {date: currentDate, ...newMsg};
-
-    // contactData.push(JSON.parse(req.body));
     contactData.push(newMsg);
-``
+
     try
     {
         let data = JSON.stringify(contactData, null, 2);
         fs.writeFile(filePath, data, function (err) 
         {
             if (err) throw err;
-            console.log('Contact Data saved');
+            // console.log('Contact Data saved');
         });
     }
     catch(e)
@@ -61,18 +76,10 @@ app.post("/contact", (req, res) =>
         debugger;
     }
 
+    g_Mutex.unlock();
+
     res.append("Access-Control-Allow-Origin", "*");
     res.send({status:1});
-
-    // let thanksPage = path.join(__dirname + "/" + req.hostname.replace('www.', '') + "/contact_ty.html");
-    // return res.sendFile(thanksPage);
-
-    // return res.redirect('contact_ty.html');
-
-    // res.setHeader('Content-Type', 'text/html');
-    // res.statusCode = 302;
-    // res.setHeader('Location', '/');
-    // return res.end();
 });
 
 //Workaround to host web sites of of different domains (language-indicator and hamadaf-hakatan)
@@ -85,7 +92,7 @@ app.get(/[a-z]|\//, (req, res) =>
 
     const filePath = utils.getCurrentDomainFilePath(req, fileName);
     
-    return res.sendFile(filePath, (err) =>
+    res.sendFile(filePath, (err) =>
     {
         if(err && err.code == 'ENOENT')
         {
@@ -93,6 +100,13 @@ app.get(/[a-z]|\//, (req, res) =>
         }
     });
 
+    if((req.hostname == "language-indicator.com" || req.hostname == "www.language-indicator.com") && (fileName.includes(".html") || fileName.includes(".exe")))
+    {
+        const currentDate = moment().format('DD-MM-YYYY HH:mm:ss');
+        const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+        let line = `${currentDate} (${ip}) - ${fileName}`;
+        console.log(line);
+    }
     // const domainDir = utils.getCurrentDomainDir(req);    
     // const options = {root: domainDir};
     // return res.sendFile(fileName, options);
