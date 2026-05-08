@@ -52,31 +52,30 @@ const g_Mutex = new Mutex;
 app.post("/contact", async function (req, res) 
 {
     await g_Mutex.lock();
-
     const filePath = utils.getCurrentDomainFilePath(req, "contact_data.json");
-    const contactData = require(filePath);
-
-    let newMsg = JSON.parse(req.body);
-    const currentDate = moment().format('YYYY-MM-DD');
-    newMsg = {date: currentDate, ...newMsg};
-    contactData.push(newMsg);
 
     try
     {
-        let data = JSON.stringify(contactData, null, 2);
-        fs.writeFile(filePath, data, function (err) 
-        {
-            if (err) throw err;
-            // console.log('Contact Data saved');
-        });
+        const jsonStr = fs.readFileSync(filePath, 'utf8');
+        const contactData = JSON.parse(jsonStr);
+
+        let newMsg = JSON.parse(req.body);
+        const currentDate = moment().format('YYYY-MM-DD');
+        newMsg = {date: currentDate, ...newMsg};
+        contactData.push(newMsg);
+
+        const data = JSON.stringify(contactData, null, 2);
+        fs.writeFileSync(filePath, data, 'utf8');
     }
     catch(e)
     {
         console.error(e);
         debugger;
     }
-
-    g_Mutex.unlock();
+    finally
+    {
+        g_Mutex.unlock();
+    }
 
     res.append("Access-Control-Allow-Origin", "*");
     res.send({status:1});

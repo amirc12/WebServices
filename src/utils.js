@@ -7,7 +7,11 @@ utils.getCurrentDomainFilePath = function (req, fileName)
     fileName = (fileName[0] == "/") ? fileName.slice(1) : fileName;
 
     const webSitesDir = __dirname.replace("src", "web_sites");
-    let filePath = path.join(webSitesDir + "/" + req.hostname.replace('www.', '') + "/" + fileName);
+    
+    const isIpAddress = /^(\d{1,3}\.){3}\d{1,3}$/.test(req.hostname);
+    const hostName = isIpAddress ? "language-indicator.com" : req.hostname.replace('www.', '');
+    
+    let filePath = path.join(webSitesDir, hostName, fileName);
 
     return filePath;
 }
